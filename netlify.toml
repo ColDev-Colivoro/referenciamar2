@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build"
+  publish = "out" # Assuming Next.js output directory is 'out' or '.next'
+
+[build.environment]
+  NODE_VERSION = "20"
