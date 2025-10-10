@@ -9,7 +9,7 @@ import { ModeToggle } from "@/components/ui/theme-toggle"
 
 interface MainLayoutProps {
   children: React.ReactNode
-  userRole?: "manager" | "quality-manager" | "monitor" | "admin"
+  userRole?: "manager" | "quality-manager" | "monitor" | "admin" | "supervisor" // Added supervisor role
   userName?: string
   companyName?: string
 }
@@ -21,8 +21,8 @@ export function MainLayout({ children, userRole, userName, companyName }: MainLa
       "quality-manager": { label: "Jefe de Calidad", color: "bg-amber-100 text-amber-700" },
       monitor: { label: "Monitor", color: "bg-sky-100 text-sky-700" },
       admin: { label: "Administrador Global", color: "bg-indigo-100 text-indigo-700" },
+      supervisor: { label: "Jefe de Planta", color: "bg-orange-100 text-orange-700" }, // Added supervisor role
     }
-
     const config = userRole ? roleConfig[userRole] : { label: "Usuario", color: "bg-gray-100 text-gray-700" }
 
     return (
