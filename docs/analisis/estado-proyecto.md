@@ -33,11 +33,12 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 |--------|--------|---|
 | Multitenancy (backend) | ✅ Implementado | 80% |
 | Auth (sessions) | ✅ Funciona | 50% |
-| Auth (token/JWT) | ⏳ Pendiente | 0% |
-| APIs REST | ⏳ Pendiente | 30% |
+| Auth (token/JWT) | ✅ Implementado | 100% |
+| APIs REST | ✅ Users/Roles implementado | 70% |
 | Frontend UI | ✅ Componentes | 60% |
 | Frontend Auth Context | ⏳ Pendiente | 0% |
-| Testing | 🟡 Mínimo | 20% |
+| Users/Roles API | ✅ Implementado | 100% |
+| Testing | 🟡 21 tests (auth+users) | 60% |
 | Deployment | ⏳ Pendiente | 0% |
 
 ---

@@ -37,8 +37,8 @@
 
 ## Phase 5: Cleanup & Verification
 
-- [ ] 5.1 Run `python manage.py seed_roles` in dev environment — verify output lists all 6 roles created/updated; run again and verify "already exists / updated" idempotency. Done when two consecutive runs exit 0 with no duplicate-key errors.
-- [ ] 5.2 Run `pytest backend/tests/test_users.py -v` — all 10 tests must pass. Done when output shows `10 passed, 0 failed`.
-- [ ] 5.3 Frontend smoke test: run `next dev`, navigate to user management page — verify users load, role badges display labels from `getRolePresentation`, create-user form populates roles from backend. Done when no `roleLabels`/`roleBadgeStyles` references remain and the UI works end-to-end.
-- [ ] 5.4 Verify `backend/apps/users/services.py` has no leftover stubs — `MANAGE_USER_PERMISSIONS` is defined, `membership_can_manage_users` has OR-logic, no dead code from old implementation.
-- [ ] 5.5 Update `openspec/changes/users-roles-permissions/design.md` — resolve Open Question about canonical role permissions array by documenting the final `permissions` values used in `seed_roles.py`.
+- [x] 5.1 Run `python manage.py seed_roles` in dev environment — verify output lists all 6 roles created/updated; run again and verify "already exists / updated" idempotency. Done when two consecutive runs exit 0 with no duplicate-key errors.
+- [x] 5.2 Run `pytest backend/tests/test_users.py -v` — all 10 tests must pass. Done when output shows `10 passed, 0 failed`.
+- [x] 5.3 Frontend smoke test: run `next dev`, navigate to user management page — verify users load, role badges display labels from `getRolePresentation`, create-user form populates roles from backend. Done when no `roleLabels`/`roleBadgeStyles` references remain and the UI works end-to-end.
+- [x] 5.4 Verify `backend/apps/users/services.py` has no leftover stubs — `MANAGE_USER_PERMISSIONS` is defined, `membership_can_manage_users` has OR-logic, no dead code from old implementation.
+- [x] 5.5 Update `openspec/changes/users-roles-permissions/design.md` — resolve Open Question about canonical role permissions array by documenting the final `permissions` values used in `seed_roles.py`.

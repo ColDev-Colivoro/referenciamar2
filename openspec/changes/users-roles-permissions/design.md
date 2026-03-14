@@ -104,17 +104,17 @@ UserMembershipDetailView.delete()
 
 ## File Changes
 
-| File | Action | Description |
-|------|--------|-------------|
-| `backend/apps/users/management/__init__.py` | Create | Empty package init |
-| `backend/apps/users/management/commands/__init__.py` | Create | Empty package init |
-| `backend/apps/users/management/commands/seed_roles.py` | Create | Idempotent management command — creates/updates 6 canonical roles |
-| `backend/apps/users/views.py` | Modify | Add `get()` and `delete()` methods to `UserMembershipDetailView` |
-| `backend/apps/users/services.py` | Modify | Extend `membership_can_manage_users` to check `role.permissions` array |
-| `backend/tests/test_users.py` | Create | 7 pytest tests covering all user endpoints |
-| `frontend/lib/users/api.ts` | Modify | Add `deactivateUser(membershipId)` function |
-| `frontend/hooks/use-users.ts` | Create | `useUsers()` hook — centralised state for users/roles CRUD |
-| `frontend/components/manager/user-management.tsx` | Modify | Remove `roleBadgeStyles`/`roleLabels`; use `useUsers()` and `getRolePresentation()` |
+| File | Action | Description | Status |
+|------|--------|-------------|--------|
+| `backend/apps/users/management/__init__.py` | Create | Empty package init | ✅ |
+| `backend/apps/users/management/commands/__init__.py` | Create | Empty package init | ✅ |
+| `backend/apps/users/management/commands/seed_roles.py` | Create | Idempotent management command — creates/updates 6 canonical roles | ✅ |
+| `backend/apps/users/views.py` | Modify | Add `get()` and `delete()` methods to `UserMembershipDetailView` | ✅ |
+| `backend/apps/users/services.py` | Modify | Extend `membership_can_manage_users` to check `role.permissions` array | ✅ |
+| `backend/tests/test_users.py` | Create | 7 pytest tests covering all user endpoints | ✅ |
+| `frontend/lib/users/api.ts` | Modify | Add `deactivateUser(membershipId)` function | ✅ |
+| `frontend/hooks/use-users.ts` | Create | `useUsers()` hook — centralised state for users/roles CRUD | ✅ |
+| `frontend/components/manager/user-management.tsx` | Modify | Remove `roleBadgeStyles`/`roleLabels`; use `useUsers()` and `getRolePresentation()` | ✅ |
 
 ---
 
