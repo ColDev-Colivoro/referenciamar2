@@ -1,4 +1,4 @@
-# Mar2Control - Sistema de Control de Calidad Pesquera
+# ColdevConAC — Sistema de Control de Calidad Pesquera
 
 ![Mar2Control Logo](public/placeholder-logo.png)
 

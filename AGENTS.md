@@ -1,4 +1,4 @@
-# AGENTS.md — referenciamar2 / Coldev-CADC
+# AGENTS.md — ColdevConAC
 
 ## Visión del producto
 

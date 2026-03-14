@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata: Metadata = {
-  title: 'ColDev',
-  description: 'Creado por ColDev Desarrollador',
-  generator: 'VERSION 1',
+  title: 'ColdevConAC',
+  description: 'Plataforma de control de calidad y operaciones pesqueras — ColDev',
+  generator: 'ColDev v1',
 }
 
 export default function RootLayout({
@@ -18,18 +16,15 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/iosevka-webfonts@6.0.0/iosevka/iosevka.css"
+        />
       </head>
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
