@@ -4,6 +4,7 @@ from .models import UserMembership
 
 
 ADMIN_ROLE_CODES = {"global_admin", "tenant_admin"}
+MANAGE_USER_PERMISSIONS = {"users.manage", "users.write", "users.admin", "tenant.users.manage"}
 
 
 def get_request_membership(request):
@@ -19,5 +20,8 @@ def get_request_membership(request):
     return membership
 
 
-def membership_can_manage_users(membership: UserMembership | None):
-    return membership is not None and membership.role.code in ADMIN_ROLE_CODES
+def membership_can_manage_users(membership: UserMembership | None) -> bool:
+    if membership is None:
+        return False
+    role = membership.role
+    return role.code in ADMIN_ROLE_CODES or bool(set(role.permissions) & MANAGE_USER_PERMISSIONS)

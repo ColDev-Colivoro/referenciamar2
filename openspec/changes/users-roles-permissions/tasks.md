@@ -2,10 +2,10 @@
 
 ## Phase 1: Backend Foundation
 
-- [ ] 1.1 Create `backend/apps/users/management/__init__.py` — empty file to make `management/` a Python package. Done when `python -c "import apps.users.management"` raises no error.
-- [ ] 1.2 Create `backend/apps/users/management/commands/__init__.py` — empty file to make `commands/` a Python package. Done when Django discovers the command directory.
-- [ ] 1.3 Create `backend/apps/users/management/commands/seed_roles.py` — implement `Command.handle()` with `CANONICAL_ROLES` list (6 roles: `global_admin`, `tenant_admin`, `manager`, `quality_manager`, `monitor`, `production_supervisor`) using `Role.objects.update_or_create(code=..., defaults={...})`. Done when `python manage.py seed_roles` exits 0 and all 6 rows exist in `Role`; second run produces no duplicates.
-- [ ] 1.4 Modify `backend/apps/users/services.py` — add `MANAGE_USER_PERMISSIONS` constant (`{"users.manage", "users.write", "users.admin", "tenant.users.manage"}`), then rewrite `membership_can_manage_users` to return `True` if `role.code in ADMIN_ROLE_CODES` **or** `set(role.permissions) & MANAGE_USER_PERMISSIONS`. Done when a membership with `role.code="manager"` and `permissions=["users.manage"]` returns `True`, and a `monitor` with no permissions returns `False`.
+- [x] 1.1 Create `backend/apps/users/management/__init__.py` — empty file to make `management/` a Python package. Done when `python -c "import apps.users.management"` raises no error.
+- [x] 1.2 Create `backend/apps/users/management/commands/__init__.py` — empty file to make `commands/` a Python package. Done when Django discovers the command directory.
+- [x] 1.3 Create `backend/apps/users/management/commands/seed_roles.py` — implement `Command.handle()` with `CANONICAL_ROLES` list (6 roles: `global_admin`, `tenant_admin`, `manager`, `quality_manager`, `monitor`, `production_supervisor`) using `Role.objects.update_or_create(code=..., defaults={...})`. Done when `python manage.py seed_roles` exits 0 and all 6 rows exist in `Role`; second run produces no duplicates.
+- [x] 1.4 Modify `backend/apps/users/services.py` — add `MANAGE_USER_PERMISSIONS` constant (`{"users.manage", "users.write", "users.admin", "tenant.users.manage"}`), then rewrite `membership_can_manage_users` to return `True` if `role.code in ADMIN_ROLE_CODES` **or** `set(role.permissions) & MANAGE_USER_PERMISSIONS`. Done when a membership with `role.code="manager"` and `permissions=["users.manage"]` returns `True`, and a `monitor` with no permissions returns `False`.
 
 ## Phase 2: Backend API Completion
 
