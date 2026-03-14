@@ -9,9 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export function SystemConfiguration() {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <Settings className="h-5 w-5 text-gray-600" />
           Configuración del Sistema
         </CardTitle>
@@ -28,7 +28,7 @@ export function SystemConfiguration() {
               <Checkbox
                 id="two-factor"
                 defaultChecked
-                className="border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="two-factor" className="text-sm text-gray-700 font-medium">
                 Requerir autenticación de dos factores (2FA)
@@ -38,7 +38,7 @@ export function SystemConfiguration() {
               <Checkbox
                 id="session-timeout"
                 defaultChecked
-                className="border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="session-timeout" className="text-sm text-gray-700 font-medium">
                 Timeout de sesión automático (30 min)
@@ -47,11 +47,11 @@ export function SystemConfiguration() {
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
                 <label className="text-xs font-medium text-gray-600">Intentos de login fallidos</label>
-                <Input placeholder="3" className="h-9 text-sm border-blue-300 focus:border-blue-500" />
+                <Input placeholder="3" className="h-9 text-sm border-border" />
               </div>
               <div className="space-y-1">
                 <label className="text-xs font-medium text-gray-600">Bloqueo de cuenta (min)</label>
-                <Input placeholder="15" className="h-9 text-sm border-blue-300 focus:border-blue-500" />
+                <Input placeholder="15" className="h-9 text-sm border-border" />
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@ export function SystemConfiguration() {
               <div className="space-y-1">
                 <label className="text-xs font-medium text-gray-600">Frecuencia de Backup</label>
                 <Select defaultValue="daily">
-                  <SelectTrigger className="h-9 text-sm border-blue-300 focus:border-blue-500">
+                  <SelectTrigger className="h-9 text-sm border-border">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -80,7 +80,7 @@ export function SystemConfiguration() {
               </div>
               <div className="space-y-1">
                 <label className="text-xs font-medium text-gray-600">Retención de Backups (días)</label>
-                <Input placeholder="30" className="h-9 text-sm border-blue-300 focus:border-blue-500" />
+                <Input placeholder="30" className="h-9 text-sm border-border" />
               </div>
             </div>
             <Button
@@ -104,7 +104,7 @@ export function SystemConfiguration() {
               <Checkbox
                 id="email-alerts"
                 defaultChecked
-                className="border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="email-alerts" className="text-sm text-gray-700 font-medium">
                 Enviar alertas por email a administradores
@@ -114,7 +114,7 @@ export function SystemConfiguration() {
               <Checkbox
                 id="system-maintenance"
                 defaultChecked
-                className="border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="system-maintenance" className="text-sm text-gray-700 font-medium">
                 Notificar mantenimientos programados a usuarios
@@ -126,7 +126,7 @@ export function SystemConfiguration() {
                 <Mail className="h-4 w-4 absolute left-3 top-3 text-gray-400" />
                 <Input
                   placeholder="soporte@coldevconac.com"
-                  className="h-9 text-sm pl-10 border-blue-300 focus:border-blue-500"
+                  className="h-9 text-sm pl-10 border-border"
                 />
               </div>
             </div>

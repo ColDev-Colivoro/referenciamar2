@@ -61,9 +61,9 @@ export function SupervisorDashboard({ pendingApprovals }: SupervisorDashboardPro
           ))}
         </div>
 
-        <div className="bg-blue-50 p-2 rounded">
-          <p className="text-xs font-medium text-blue-800">Autorizaciones Hoy</p>
-          <p className="text-xs text-blue-600">✓ 12 Aprobadas | ✗ 2 Rechazadas</p>
+        <div className="bg-primary/10 p-2 rounded">
+          <p className="text-xs font-medium text-primary">Autorizaciones Hoy</p>
+          <p className="text-xs text-primary/80">✓ 12 Aprobadas | ✗ 2 Rechazadas</p>
         </div>
       </CardContent>
     </Card>

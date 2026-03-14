@@ -29,7 +29,7 @@ export function DashboardNav() {
               href={l.href}
               className={`text-sm px-3 py-1.5 rounded-md transition-colors ${
                 active
-                  ? "bg-blue-100 text-blue-800 font-semibold"
+                  ? "bg-primary/10 text-primary font-semibold"
                   : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
               }`}
             >

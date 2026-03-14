@@ -39,7 +39,7 @@ export function ProductionOverview() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "processing":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Procesando</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Procesando</Badge>
       case "quality-check":
         return <Badge className="text-xs font-medium bg-amber-100 text-amber-700">Control Calidad</Badge>
       case "packaging":
@@ -54,7 +54,7 @@ export function ProductionOverview() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "processing":
-        return <Factory className="h-4 w-4 text-blue-600" />
+        return <Factory className="h-4 w-4 text-primary" />
       case "quality-check":
         return <Fish className="h-4 w-4 text-amber-600" />
       case "packaging":
@@ -67,19 +67,19 @@ export function ProductionOverview() {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Package className="h-5 w-5 text-indigo-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Package className="h-5 w-5 text-primary" />
           Resumen de Producción - Tiempo Real
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-5">
         {/* Métricas de Producción */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Package className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">5,250</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <Package className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">5,250</p>
             <p className="text-xs text-gray-600">kg Hoy</p>
           </div>
           <div className="bg-emerald-50 p-4 rounded-lg text-center shadow-sm border border-emerald-100">
@@ -128,7 +128,7 @@ export function ProductionOverview() {
                       {item.progress}% - {item.estimatedCompletion} restantes
                     </span>
                   </div>
-                  <Progress value={item.progress} className="h-2 bg-gray-200 [&>*]:bg-blue-500" />
+                  <Progress value={item.progress} className="h-2 bg-gray-200 [&>*]:bg-primary" />
                 </div>
               </div>
             ))}

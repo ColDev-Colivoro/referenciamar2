@@ -27,9 +27,9 @@ export function BillingOverview() {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <DollarSign className="h-5 w-5 text-emerald-600" />
           Facturación y Planes
         </CardTitle>
@@ -42,9 +42,9 @@ export function BillingOverview() {
             <p className="text-xl font-bold text-emerald-800">$797</p>
             <p className="text-xs text-gray-600">Ingresos/Mes</p>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <TrendingUp className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">+15%</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <TrendingUp className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">+15%</p>
             <p className="text-xs text-gray-600">Crecimiento</p>
           </div>
         </div>

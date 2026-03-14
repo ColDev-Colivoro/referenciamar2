@@ -20,9 +20,9 @@ interface QualityManagerDashboardProps {
 
 export function QualityManagerDashboard({ pendingApprovals }: QualityManagerDashboardProps) {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <FlaskConical className="h-5 w-5 text-amber-600" />
           Panel Jefe de Calidad
         </CardTitle>
@@ -44,9 +44,9 @@ export function QualityManagerDashboard({ pendingApprovals }: QualityManagerDash
             <p className="text-xl font-bold text-red-800">1.2%</p>
             <p className="text-xs text-gray-600">Tasa de Rechazo</p>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Package className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">12</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <Package className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">12</p>
             <p className="text-xs text-gray-600">Lotes Activos</p>
           </div>
           <div className="bg-amber-50 p-4 rounded-lg text-center shadow-sm border border-amber-100">
@@ -62,14 +62,14 @@ export function QualityManagerDashboard({ pendingApprovals }: QualityManagerDash
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
               <span>Salmón Atlántico - Lote SA-2024-001</span>
-              <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Inspección</Badge>
+              <Badge className="text-xs font-medium bg-primary/10 text-primary">Inspección</Badge>
             </div>
-            <Progress value={70} className="h-2 bg-gray-200 [&>*]:bg-blue-500" />
+            <Progress value={70} className="h-2 bg-gray-200 [&>*]:bg-primary" />
             <div className="flex justify-between items-center text-sm">
               <span>Langostinos - Lote LG-2024-045</span>
-              <Badge className="text-xs font-medium bg-cyan-100 text-cyan-700">Control Temp.</Badge>
+              <Badge className="text-xs font-medium bg-primary/10 text-primary">Control Temp.</Badge>
             </div>
-            <Progress value={45} className="h-2 bg-gray-200 [&>*]:bg-cyan-500" />
+            <Progress value={45} className="h-2 bg-gray-200 [&>*]:bg-primary" />
           </div>
         </div>
 

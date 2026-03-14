@@ -37,10 +37,10 @@ export function TeamOverview() {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Users className="h-5 w-5 text-blue-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Users className="h-5 w-5 text-primary" />
           Equipo de Monitores
         </CardTitle>
       </CardHeader>
@@ -53,8 +53,8 @@ export function TeamOverview() {
             </p>
             <p className="text-xs text-gray-600">Monitores Activos</p>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <p className="text-xl font-bold text-blue-800">{teamMembers.reduce((sum, m) => sum + m.tasksToday, 0)}</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <p className="text-xl font-bold text-foreground">{teamMembers.reduce((sum, m) => sum + m.tasksToday, 0)}</p>
             <p className="text-xs text-gray-600">Tareas Completadas Hoy</p>
           </div>
         </div>
@@ -89,9 +89,9 @@ export function TeamOverview() {
           </div>
         </div>
 
-        <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 text-sm">
-          <p className="font-medium text-blue-800">Resumen del Equipo</p>
-          <p className="text-blue-600 mt-1">
+        <div className="bg-primary/10 p-3 rounded-lg border border-border text-sm">
+          <p className="font-medium text-foreground">Resumen del Equipo</p>
+          <p className="text-primary mt-1">
             Monitores activos:{" "}
             <span className="font-semibold">{teamMembers.filter((m) => m.status === "active").length}</span> de{" "}
             <span className="font-semibold">{teamMembers.length}</span>.

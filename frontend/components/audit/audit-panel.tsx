@@ -44,7 +44,7 @@ export function AuditPanel() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "info":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Info</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Info</Badge>
       case "success":
         return <Badge className="text-xs font-medium bg-emerald-100 text-emerald-700">Éxito</Badge>
       case "error":
@@ -55,7 +55,7 @@ export function AuditPanel() {
   }
 
   const getActionIcon = (action: string) => {
-    if (action.includes("Modificada")) return <Edit className="h-4 w-4 text-blue-600" />
+    if (action.includes("Modificada")) return <Edit className="h-4 w-4 text-primary" />
     if (action.includes("Aprobada")) return <CheckCircle className="h-4 w-4 text-emerald-600" />
     if (action.includes("Rechazada")) return <AlertTriangle className="h-4 w-4 text-red-600" />
     if (action.includes("Creado")) return <Package className="h-4 w-4 text-purple-600" />
@@ -63,10 +63,10 @@ export function AuditPanel() {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Search className="h-5 w-5 text-indigo-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Search className="h-5 w-5 text-primary" />
           Auditoría Reciente
         </CardTitle>
       </CardHeader>
@@ -95,18 +95,18 @@ export function AuditPanel() {
           </div>
         </div>
 
-        <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-200 text-sm">
-          <p className="font-medium text-indigo-800 flex items-center gap-2">
-            <Clock className="h-4 w-4 text-indigo-600" />
+        <div className="bg-primary/10 p-3 rounded-lg border border-primary/30 text-sm">
+          <p className="font-medium text-foreground flex items-center gap-2">
+            <Clock className="h-4 w-4 text-primary" />
             Historial de Auditoría
           </p>
-          <p className="text-indigo-600 mt-1">
+          <p className="text-primary mt-1">
             Todos los eventos del sistema son registrados para trazabilidad completa.
           </p>
           <Button
             size="sm"
             variant="outline"
-            className="mt-3 w-full text-xs font-semibold border-indigo-300 text-indigo-700 hover:bg-indigo-100 rounded-md bg-transparent"
+            className="mt-3 w-full text-xs font-semibold border-primary/30 text-primary hover:bg-primary/10 rounded-md bg-transparent"
           >
             <FileText className="h-3 w-3 mr-1" />
             Ver Reporte Completo

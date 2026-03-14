@@ -27,7 +27,7 @@ export function MonitorDashboard({ availableForms, completedToday }: MonitorDash
       case "blocked":
         return <Badge className="text-xs font-medium bg-gray-100 text-gray-700">Bloqueada</Badge>
       case "completed":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Completada</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Completada</Badge>
     }
   }
 
@@ -38,7 +38,7 @@ export function MonitorDashboard({ availableForms, completedToday }: MonitorDash
       case "medium":
         return <Badge className="text-xs font-medium bg-amber-100 text-amber-700">Media</Badge>
       case "low":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Baja</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Baja</Badge>
     }
   }
 
@@ -47,7 +47,7 @@ export function MonitorDashboard({ availableForms, completedToday }: MonitorDash
       return (
         <Button
           size="sm"
-          className="w-full h-9 text-sm font-semibold bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 rounded-md"
+          className="w-full h-9 text-sm font-semibold bg-primary hover:bg-primary/90 rounded-md"
         >
           <Edit className="h-4 w-4 mr-1" />
           Completar
@@ -67,13 +67,13 @@ export function MonitorDashboard({ availableForms, completedToday }: MonitorDash
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <ClipboardCheck className="h-5 w-5 text-sky-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <ClipboardCheck className="h-5 w-5 text-primary" />
           Panel Monitor
         </CardTitle>
-        <Badge className="text-xs font-medium bg-sky-100 text-sky-700 w-fit">
+        <Badge className="text-xs font-medium bg-primary/10 text-primary w-fit">
           <FileCheck className="h-3 w-3 mr-1" />
           Solo Completar
         </Badge>
@@ -100,9 +100,9 @@ export function MonitorDashboard({ availableForms, completedToday }: MonitorDash
             </p>
             <p className="text-xs text-gray-600">Urgentes</p>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Package className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <Package className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">
               {availableForms.filter((f) => f.status !== "blocked").length}
             </p>
             <p className="text-xs text-gray-600">Total Asignadas</p>

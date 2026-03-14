@@ -12,9 +12,9 @@ interface ManagerDashboardProps {
 
 export function ManagerDashboard({ companyName }: ManagerDashboardProps) {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-primary/30">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <BarChart3 className="h-5 w-5 text-emerald-600" />
           Panel Gerente - {companyName}
         </CardTitle>
@@ -26,9 +26,9 @@ export function ManagerDashboard({ companyName }: ManagerDashboardProps) {
       <CardContent className="space-y-6">
         {/* Métricas Principales - Más visuales */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Fish className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">1,247</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-primary/20">
+            <Fish className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-primary">1,247</p>
             <p className="text-xs text-gray-600">Lotes Activos</p>
           </div>
           <div className="bg-emerald-50 p-4 rounded-lg text-center shadow-sm border border-emerald-100">
@@ -54,20 +54,20 @@ export function ManagerDashboard({ companyName }: ManagerDashboardProps) {
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm">
               <span>Salmón Atlántico - Lote SA-2024-001</span>
-              <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Congelado</Badge>
+              <Badge className="text-xs font-medium bg-primary/10 text-primary">Congelado</Badge>
             </div>
-            <Progress value={85} className="h-2 bg-gray-200 [&>*]:bg-blue-500" />
+            <Progress value={85} className="h-2 bg-gray-200 [&>*]:bg-primary" />
             <div className="flex justify-between items-center text-sm">
               <span>Langostinos - Lote LG-2024-045</span>
-              <Badge className="text-xs font-medium bg-cyan-100 text-cyan-700">Enfriado</Badge>
+              <Badge className="text-xs font-medium bg-primary/20 text-primary/80">Enfriado</Badge>
             </div>
-            <Progress value={60} className="h-2 bg-gray-200 [&>*]:bg-cyan-500" />
+            <Progress value={60} className="h-2 bg-gray-200 [&>*]:bg-primary/60" />
           </div>
         </div>
 
         {/* Acciones - Botones con gradiente */}
         <div className="flex gap-3 pt-2">
-          <Button className="flex-1 h-10 text-base font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-md rounded-lg">
+          <Button className="flex-1 h-10 text-base font-semibold bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md rounded-lg">
             <Eye className="h-4 w-4 mr-2" />
             Ver Todos los Lotes
           </Button>

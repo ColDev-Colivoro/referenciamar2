@@ -48,7 +48,7 @@ export default function FormsPage({ params }: FormsPageProps) {
   return (
     <div className="p-6 space-y-6">
       {/* Breadcrumb */}
-      <Link href="/dashboard/lots" className="text-sm text-blue-600 hover:underline">
+      <Link href="/dashboard/lots" className="text-sm text-primary hover:underline">
         ← Volver a Lotes
       </Link>
       {/* Header */}
@@ -76,7 +76,7 @@ export default function FormsPage({ params }: FormsPageProps) {
               <select
                 value={newFormType}
                 onChange={(e) => setNewFormType(e.target.value as FormType)}
-                className="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 {(Object.keys(FORM_TYPE_LABELS) as FormType[]).map((key) => (
                   <option key={key} value={key}>
@@ -92,7 +92,7 @@ export default function FormsPage({ params }: FormsPageProps) {
                 value={newFormNotes}
                 onChange={(e) => setNewFormNotes(e.target.value)}
                 placeholder="Observaciones…"
-                className="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
             <div className="flex gap-2">

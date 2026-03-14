@@ -46,9 +46,9 @@ export function ApprovalWorkflow({ pendingApprovals }: ApprovalWorkflowProps) {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <Shield className="h-5 w-5 text-orange-600" />
           Flujo de Aprobaciones
         </CardTitle>
@@ -93,7 +93,7 @@ export function ApprovalWorkflow({ pendingApprovals }: ApprovalWorkflowProps) {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-9 text-xs font-semibold text-blue-600 hover:bg-blue-50 rounded-md"
+                    className="h-9 text-xs font-semibold text-primary hover:bg-primary/10 rounded-md"
                   >
                     Ver Detalles
                   </Button>

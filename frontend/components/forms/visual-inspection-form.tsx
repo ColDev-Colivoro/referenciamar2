@@ -15,14 +15,14 @@ interface VisualInspectionFormProps {
 
 export function VisualInspectionForm({ lotNumber, productType }: VisualInspectionFormProps) {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <Eye className="h-5 w-5 text-emerald-600" />
           Planilla: Inspección Visual
         </CardTitle>
         <div className="flex items-center gap-2">
-          <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Lote: {lotNumber}</Badge>
+          <Badge className="text-xs font-medium bg-primary/10 text-primary">Lote: {lotNumber}</Badge>
           <Badge className="text-xs font-medium bg-emerald-100 text-emerald-700">{productType}</Badge>
         </div>
       </CardHeader>
@@ -32,7 +32,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">Estado General</label>
             <Select>
-              <SelectTrigger className="h-10 text-base border-blue-300 focus:border-blue-500">
+              <SelectTrigger className="h-10 text-base border-border">
                 <SelectValue placeholder="Seleccionar estado" />
               </SelectTrigger>
               <SelectContent>
@@ -46,7 +46,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">Color</label>
             <Select>
-              <SelectTrigger className="h-10 text-base border-blue-300 focus:border-blue-500">
+              <SelectTrigger className="h-10 text-base border-border">
                 <SelectValue placeholder="Evaluar color" />
               </SelectTrigger>
               <SelectContent>
@@ -63,7 +63,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
           <label className="text-sm font-semibold text-gray-700">Observaciones Detalladas</label>
           <Textarea
             placeholder="Describir apariencia, textura, defectos visibles, etc."
-            className="text-base h-28 border-blue-300 focus:border-blue-500"
+            className="text-base h-28 border-border"
           />
         </div>
 
@@ -74,7 +74,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="no-parasites"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="no-parasites" className="text-sm font-medium text-gray-700">
                 Ausencia de parásitos visibles
@@ -83,7 +83,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="no-damage"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="no-damage" className="text-sm font-medium text-gray-700">
                 Sin daños mecánicos o físicos
@@ -92,7 +92,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="proper-size"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="proper-size" className="text-sm font-medium text-gray-700">
                 Tamaño y peso conforme a especificaciones
@@ -101,7 +101,7 @@ export function VisualInspectionForm({ lotNumber, productType }: VisualInspectio
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="fresh-appearance"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="fresh-appearance" className="text-sm font-medium text-gray-700">
                 Apariencia fresca y saludable

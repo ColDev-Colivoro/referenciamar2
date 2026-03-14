@@ -26,7 +26,7 @@ export function ProcessMonitoring({ lots }: ProcessMonitoringProps) {
   const getStatusBadge = (status: Lot["status"]) => {
     switch (status) {
       case "active":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Activo</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Activo</Badge>
       case "processing":
         return <Badge className="text-xs font-medium bg-amber-100 text-amber-700">En Proceso</Badge>
       case "completed":
@@ -39,16 +39,16 @@ export function ProcessMonitoring({ lots }: ProcessMonitoringProps) {
   }
 
   const getProcessIcon = (process: string) => {
-    if (process.includes("Inspección")) return <FlaskConical className="h-4 w-4 text-blue-600" />
-    if (process.includes("Temperatura")) return <Clock className="h-4 w-4 text-cyan-600" />
+    if (process.includes("Inspección")) return <FlaskConical className="h-4 w-4 text-primary" />
+    if (process.includes("Temperatura")) return <Clock className="h-4 w-4 text-primary" />
     if (process.includes("Empaque")) return <Package className="h-4 w-4 text-emerald-600" />
     return <TrendingUp className="h-4 w-4 text-gray-600" />
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <FlaskConical className="h-5 w-5 text-amber-600" />
           Monitoreo de Procesos de Calidad
         </CardTitle>
@@ -56,9 +56,9 @@ export function ProcessMonitoring({ lots }: ProcessMonitoringProps) {
       <CardContent className="space-y-5">
         {/* Resumen de Procesos */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Package className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">{lots.length}</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <Package className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">{lots.length}</p>
             <p className="text-xs text-gray-600">Total Lotes</p>
           </div>
           <div className="bg-emerald-50 p-4 rounded-lg text-center shadow-sm border border-emerald-100">
@@ -110,7 +110,7 @@ export function ProcessMonitoring({ lots }: ProcessMonitoringProps) {
                       <span>Progreso del Proceso</span>
                       <span className="font-medium text-gray-800">{lot.progress}%</span>
                     </div>
-                    <Progress value={lot.progress} className="h-2 bg-gray-200 [&>*]:bg-blue-500" />
+                    <Progress value={lot.progress} className="h-2 bg-gray-200 [&>*]:bg-primary" />
                   </div>
                   <Button
                     size="sm"

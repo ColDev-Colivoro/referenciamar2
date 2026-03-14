@@ -2,7 +2,7 @@ import type { SubscriptionStatus } from "@/lib/billing/types"
 
 const statusConfig: Record<SubscriptionStatus, { label: string; className: string }> = {
   active: { label: "Activo", className: "bg-green-100 text-green-700 border-green-200" },
-  trial: { label: "Prueba", className: "bg-blue-100 text-blue-700 border-blue-200" },
+  trial: { label: "Prueba", className: "bg-primary/15 text-primary border-primary/30" },
   expired: { label: "Expirado", className: "bg-red-100 text-red-700 border-red-200" },
   suspended: { label: "Suspendido", className: "bg-orange-100 text-orange-700 border-orange-200" },
 }

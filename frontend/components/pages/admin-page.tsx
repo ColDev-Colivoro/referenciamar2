@@ -21,10 +21,10 @@ export function AdminPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-4">
         <div className="xl:col-span-2">
-          <Card className="border border-indigo-200 bg-white/90 shadow-lg">
+          <Card className="border border-primary/30 bg-white/90 shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-indigo-900">
-                <ShieldCheck className="h-5 w-5 text-indigo-600" />
+              <CardTitle className="flex items-center gap-2 text-foreground">
+                <ShieldCheck className="h-5 w-5 text-primary" />
                 Fundación administrativa activa
               </CardTitle>
             </CardHeader>
@@ -35,7 +35,7 @@ export function AdminPage() {
               </p>
               <div className="flex flex-wrap gap-2">
                 <Badge className={rolePresentation.color}>{rolePresentation.label}</Badge>
-                <Badge className="bg-sky-100 text-sky-700">Tenant: {session?.tenant.slug ?? "sin resolver"}</Badge>
+                <Badge className="bg-primary/10 text-primary">Tenant: {session?.tenant.slug ?? "sin resolver"}</Badge>
                 <Badge className="bg-emerald-100 text-emerald-700">Modo: {session?.sessionMode ?? "hybrid"}</Badge>
               </div>
             </CardContent>
@@ -43,10 +43,10 @@ export function AdminPage() {
         </div>
 
         <div className="col-span-1">
-          <Card className="border border-sky-200 bg-white/90 shadow-lg">
+          <Card className="border border-primary/20 bg-white/90 shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-sky-900">
-                <Users className="h-5 w-5 text-sky-600" />
+              <CardTitle className="flex items-center gap-2 text-foreground">
+                <Users className="h-5 w-5 text-primary" />
                 Alcance actual
               </CardTitle>
             </CardHeader>

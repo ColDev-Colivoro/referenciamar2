@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button"
 
 export function QuickActions() {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <Bolt className="h-5 w-5 text-amber-600" />
           Acciones Rápidas
         </CardTitle>

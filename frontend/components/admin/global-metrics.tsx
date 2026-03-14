@@ -6,10 +6,10 @@ import { Progress } from "@/components/ui/progress"
 
 export function GlobalMetrics() {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <BarChart3 className="h-5 w-5 text-indigo-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <BarChart3 className="h-5 w-5 text-primary" />
           Métricas Globales del Sistema
         </CardTitle>
       </CardHeader>
@@ -21,9 +21,9 @@ export function GlobalMetrics() {
             <p className="text-xl font-bold text-emerald-800">99.8%</p>
             <p className="text-xs text-gray-600">Disponibilidad</p>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <TrendingUp className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">+12%</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <TrendingUp className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">+12%</p>
             <p className="text-xs text-gray-600">Crecimiento Mensual</p>
           </div>
         </div>
@@ -36,7 +36,7 @@ export function GlobalMetrics() {
               <span>Planillas Procesadas</span>
               <span className="font-medium text-gray-800">3,595 / 4,000</span>
             </div>
-            <Progress value={90} className="h-2 bg-gray-200 [&>*]:bg-blue-500" />
+            <Progress value={90} className="h-2 bg-gray-200 [&>*]:bg-primary" />
 
             <div className="flex justify-between text-sm">
               <span>Almacenamiento Usado</span>
@@ -66,9 +66,9 @@ export function GlobalMetrics() {
         </div>
 
         {/* Estadísticas Mensuales */}
-        <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-200 text-sm">
-          <p className="font-medium text-indigo-800">Resumen del Mes</p>
-          <p className="text-indigo-600 mt-1">
+        <div className="bg-primary/10 p-3 rounded-lg border border-primary/30 text-sm">
+          <p className="font-medium text-foreground">Resumen del Mes</p>
+          <p className="text-primary mt-1">
             <span className="font-semibold">+2</span> empresas nuevas • <span className="font-semibold">+15</span>{" "}
             usuarios • <span className="font-semibold">98.5%</span> uptime
           </p>

@@ -63,10 +63,10 @@ export function SupportTickets() {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <HelpCircle className="h-5 w-5 text-blue-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <HelpCircle className="h-5 w-5 text-primary" />
           Tickets de Soporte
         </CardTitle>
       </CardHeader>
@@ -112,7 +112,7 @@ export function SupportTickets() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="w-full text-xs font-semibold text-blue-600 hover:bg-blue-50 rounded-md mt-2"
+                  className="w-full text-xs font-semibold text-primary hover:bg-primary/10 rounded-md mt-2"
                 >
                   <MessageSquare className="h-3 w-3 mr-1" />
                   Ver Conversación
@@ -123,7 +123,7 @@ export function SupportTickets() {
         </div>
 
         {/* Acciones */}
-        <Button className="w-full h-10 text-base font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-md rounded-lg">
+        <Button className="w-full h-10 text-base font-semibold bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md rounded-lg">
           <HelpCircle className="h-4 w-4 mr-2" />
           Ver Todos los Tickets
         </Button>

@@ -42,13 +42,13 @@ export function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-100 flex items-center justify-center p-4 font-sans antialiased">
-      <Card className="w-full max-w-md bg-white/90 backdrop-blur-sm shadow-2xl rounded-xl border border-blue-200">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 dark:bg-background dark:from-transparent dark:to-transparent flex items-center justify-center p-4 font-sans antialiased">
+      <Card className="w-full max-w-md bg-white/90 dark:glass-card-brand backdrop-blur-sm shadow-2xl rounded-xl border border-orange-200/50 dark:border-white/12">
         <CardHeader className="text-center pt-8 pb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-5 rounded-full w-24 h-24 mx-auto mb-4 shadow-lg flex items-center justify-center">
+          <div className="bg-primary p-5 rounded-full w-24 h-24 mx-auto mb-4 shadow-lg flex items-center justify-center">
             <Waves className="h-14 w-14 text-white" />
           </div>
-          <CardTitle className="text-3xl font-extrabold text-blue-900 tracking-tight">ColdevConAC</CardTitle>
+          <CardTitle className="text-3xl font-extrabold text-foreground dark:text-primary tracking-tight">ColdevConAC</CardTitle>
           <p className="text-base text-gray-600 mt-2">Coldev-CADC · Control de Calidad Pesquera</p>
         </CardHeader>
 
@@ -59,10 +59,10 @@ export function LoginPage() {
               placeholder="Ingrese su usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="h-10 text-base border-blue-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
+              className="h-10 text-base transition-all duration-200"
             />
-            <div className="bg-blue-50 p-4 rounded-lg text-sm border border-blue-200 text-blue-700">
-              <p className="font-bold text-blue-800 mb-2">Acceso real en construcción</p>
+            <div className="bg-orange-50 dark:bg-primary/10 p-4 rounded-lg text-sm border border-orange-200 dark:border-primary/20 text-orange-800 dark:text-primary">
+              <p className="font-bold text-orange-900 dark:text-primary mb-2">Acceso real en construcción</p>
               <p>Este login ya está preparado para autenticarse contra el backend Django de Coldev-CADC.</p>
               <p className="mt-2">Debes configurar tenant, usuario y credenciales reales para operar.</p>
             </div>
@@ -75,14 +75,14 @@ export function LoginPage() {
               placeholder="Ingrese su contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="h-10 text-base border-blue-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
+              className="h-10 text-base transition-all duration-200"
             />
           </div>
 
           <div className="space-y-3">
             <label className="text-sm font-semibold text-gray-700">Empresa</label>
             <Select value={selectedCompany} onValueChange={setSelectedCompany}>
-              <SelectTrigger className="h-10 text-base border-blue-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200">
+              <SelectTrigger className="h-10 text-base transition-all duration-200">
                 <SelectValue placeholder="Seleccionar Empresa" />
               </SelectTrigger>
               <SelectContent>
@@ -95,7 +95,7 @@ export function LoginPage() {
           </div>
 
           <Button
-            className="w-full h-12 text-lg font-bold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg rounded-lg"
+            className="w-full h-12 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 shadow-lg rounded-lg"
             onClick={handleLogin}
             disabled={!username || !password || !selectedCompany || isLoading}
           >

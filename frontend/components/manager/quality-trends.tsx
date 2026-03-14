@@ -33,10 +33,10 @@ export function QualityTrends() {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <BarChart2 className="h-5 w-5 text-blue-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <BarChart2 className="h-5 w-5 text-primary" />
           Tendencias de Calidad
         </CardTitle>
       </CardHeader>
@@ -72,16 +72,16 @@ export function QualityTrends() {
               </div>
               <Progress
                 value={item.metric === "Tiempo de Procesamiento" ? (5 - item.current) * 20 : item.current} // Example mapping for progress
-                className="h-2 bg-gray-200 [&>*]:bg-blue-500"
+                className="h-2 bg-gray-200 [&>*]:bg-primary"
               />
             </div>
           ))}
         </div>
 
         {/* Resumen */}
-        <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 text-sm">
-          <p className="font-medium text-blue-800">Resumen del Período</p>
-          <p className="text-blue-600 mt-1">
+        <div className="bg-primary/10 p-3 rounded-lg border border-border text-sm">
+          <p className="font-medium text-foreground">Resumen del Período</p>
+          <p className="text-primary mt-1">
             <CheckCircle className="h-4 w-4 inline mr-1 text-emerald-600" />
             Mejora general en cumplimiento y reducción de rechazos.
           </p>

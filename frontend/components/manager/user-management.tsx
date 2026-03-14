@@ -120,9 +120,9 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
 
   if (!canManage) {
     return (
-      <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+      <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
         <CardHeader className="pb-4">
-          <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+          <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
             <Users className="h-5 w-5 text-emerald-600" />
             Gestión de Usuarios
           </CardTitle>
@@ -140,10 +140,10 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+          <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
             <Users className="h-5 w-5 text-emerald-600" />
             Gestión de Usuarios
           </CardTitle>
@@ -163,12 +163,12 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
             <p className="text-xl font-bold text-gray-800">{summary.inactive}</p>
             <p className="text-xs text-gray-600">Inactivos</p>
           </div>
-          <div className="bg-indigo-50 p-2 rounded-lg shadow-sm border border-indigo-100">
-            <p className="text-xl font-bold text-indigo-800">{summary.admins}</p>
+          <div className="bg-primary/10 p-2 rounded-lg shadow-sm border border-primary/30">
+            <p className="text-xl font-bold text-foreground">{summary.admins}</p>
             <p className="text-xs text-gray-600">Admins</p>
           </div>
-          <div className="bg-sky-50 p-2 rounded-lg shadow-sm border border-sky-100">
-            <p className="text-xl font-bold text-sky-800">{summary.total}</p>
+          <div className="bg-primary/10 p-2 rounded-lg shadow-sm border border-primary/20">
+            <p className="text-xl font-bold text-foreground">{summary.total}</p>
             <p className="text-xs text-gray-600">Total</p>
           </div>
         </div>

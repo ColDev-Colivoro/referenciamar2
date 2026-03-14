@@ -6,9 +6,9 @@ import { Progress } from "@/components/ui/progress"
 
 export function MetricsOverview() {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <BarChart2 className="h-5 w-5 text-purple-600" />
           Métricas Generales
         </CardTitle>
@@ -21,9 +21,9 @@ export function MetricsOverview() {
             <p className="text-xl font-bold text-emerald-800">94.2%</p>
             <p className="text-xs text-gray-600">Eficiencia Operativa</p>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Users className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">67</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-border">
+            <Users className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-foreground">67</p>
             <p className="text-xs text-gray-600">Usuarios Activos</p>
           </div>
         </div>
@@ -36,7 +36,7 @@ export function MetricsOverview() {
               <span>Planillas Completadas</span>
               <span className="font-medium text-gray-800">1,247 / 1,400</span>
             </div>
-            <Progress value={89} className="h-2 bg-gray-200 [&>*]:bg-blue-500" />
+            <Progress value={89} className="h-2 bg-gray-200 [&>*]:bg-primary" />
 
             <div className="flex justify-between text-sm">
               <span>Autorizaciones Aprobadas</span>

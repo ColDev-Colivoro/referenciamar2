@@ -36,7 +36,7 @@ export function AssignedTasks({ tasks }: AssignedTasksProps) {
       case "blocked":
         return <Badge className="text-xs font-medium bg-gray-100 text-gray-700">Bloqueada</Badge>
       case "completed":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Completada</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Completada</Badge>
     }
   }
 
@@ -56,7 +56,7 @@ export function AssignedTasks({ tasks }: AssignedTasksProps) {
         )
       case "low":
         return (
-          <Badge className="text-xs font-medium bg-blue-100 text-blue-700 flex items-center gap-1">
+          <Badge className="text-xs font-medium bg-primary/10 text-primary flex items-center gap-1">
             <CheckCircle className="h-3 w-3" /> Baja
           </Badge>
         )
@@ -64,7 +64,7 @@ export function AssignedTasks({ tasks }: AssignedTasksProps) {
   }
 
   const getTaskIcon = (title: string) => {
-    if (title.includes("Temperatura")) return <Thermometer className="h-4 w-4 text-blue-600" />
+    if (title.includes("Temperatura")) return <Thermometer className="h-4 w-4 text-primary" />
     if (title.includes("Inspección")) return <Eye className="h-4 w-4 text-emerald-600" />
     if (title.includes("Ficha")) return <FileText className="h-4 w-4 text-purple-600" />
     if (title.includes("Sanitario")) return <ShieldCheck className="h-4 w-4 text-red-600" />
@@ -72,10 +72,10 @@ export function AssignedTasks({ tasks }: AssignedTasksProps) {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <ListChecks className="h-5 w-5 text-sky-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <ListChecks className="h-5 w-5 text-primary" />
           Mis Tareas Asignadas
         </CardTitle>
       </CardHeader>
@@ -104,7 +104,7 @@ export function AssignedTasks({ tasks }: AssignedTasksProps) {
               <div className="flex gap-2 pt-2">
                 <Button
                   size="sm"
-                  className="flex-1 h-9 text-sm font-semibold bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 rounded-md"
+                  className="flex-1 h-9 text-sm font-semibold bg-primary hover:bg-primary/90 rounded-md"
                   disabled={task.status === "blocked"}
                 >
                   Completar Tarea
@@ -122,8 +122,8 @@ export function AssignedTasks({ tasks }: AssignedTasksProps) {
           ))}
         </div>
 
-        <div className="bg-sky-50 p-3 rounded-lg border border-sky-200 text-sm">
-          <p className="font-medium text-sky-800 flex items-center gap-2">
+        <div className="bg-primary/10 p-3 rounded-lg border border-primary/20 text-sm">
+          <p className="font-medium text-foreground flex items-center gap-2">
             <CheckCircle className="h-4 w-4 text-emerald-600" />
             Tienes <span className="font-semibold">{tasks.filter((t) => t.status === "available").length}</span> tareas
             pendientes. ¡Vamos!

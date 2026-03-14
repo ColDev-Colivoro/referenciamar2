@@ -20,6 +20,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
     --primary: 14 100% 57%;           /* #ff5722 ColDev orange */
+    --primary-dark: 11 80% 50%;       /* #e64a19 WCAG AA text on light bg */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 94%;
     --secondary-foreground: 0 0% 9%;
@@ -63,6 +64,7 @@
     --popover: 0 0% 14%;
     --popover-foreground: 0 0% 96%;
     --primary: 14 100% 57%;           /* #ff5722 orange stays */
+    --primary-dark: 11 80% 50%;       /* #e64a19 WCAG AA text on light bg */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 18%;            /* #2f2f2f surface-hover */
     --secondary-foreground: 0 0% 96%;
@@ -132,6 +134,28 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass-card { background: hsl(var(--card)); }
+  }
+
+  /* Brand glass card — login card dark mode */
+  .glass-card-brand {
+    background: rgba(255, 87, 34, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass-card-brand { background: hsl(var(--card)); }
+  }
+
+  /* Brand gradient backgrounds */
+  .brand-gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, #2a1810 100%);
+  }
+  .brand-gradient-bg-light {
+    background: linear-gradient(135deg, #fff8f5 0%, #fff3e0 100%);
   }
 
   /* Hover lift effect */

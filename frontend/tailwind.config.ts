@@ -25,6 +25,7 @@ const config: Config = {
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
+  				dark: 'hsl(var(--primary-dark))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
@@ -64,8 +65,10 @@ const config: Config = {
   				ring: 'hsl(var(--sidebar-ring))'
   			}
   		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
+  		fontFamily: {
+  			sans: ['Iosevka', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+  		},
+  		borderRadius: {  			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},

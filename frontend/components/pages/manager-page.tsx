@@ -66,7 +66,7 @@ export function ManagerPage() {
             <CardContent className="space-y-3 text-sm text-slate-700">
               <div className="flex flex-wrap gap-2">
                 <Badge className={rolePresentation.color}>{rolePresentation.label}</Badge>
-                <Badge className="bg-sky-100 text-sky-700">Tenant: {session?.tenant.slug ?? "sin tenant"}</Badge>
+                <Badge className="bg-primary/10 text-primary">Tenant: {session?.tenant.slug ?? "sin tenant"}</Badge>
               </div>
               <p>
                 Esta vista ahora toma la sesión real del backend. Si el rol no tiene permisos administrativos, la gestión de usuarios se

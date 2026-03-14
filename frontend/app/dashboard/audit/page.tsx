@@ -11,7 +11,7 @@ import { DashboardNav } from "@/components/layout/dashboard-nav"
 const AUDIT_ROLES = new Set(["global_admin", "tenant_admin"])
 
 const LEVEL_STYLES: Record<string, string> = {
-  info: "bg-blue-50 text-blue-700 border-blue-200",
+  info: "bg-primary/10 text-primary border-primary/30",
   warning: "bg-yellow-50 text-yellow-700 border-yellow-200",
   error: "bg-red-50 text-red-700 border-red-200",
 }
@@ -62,7 +62,7 @@ export default function AuditPage() {
             placeholder="Ej: lot.created"
             value={pendingFilters.action}
             onChange={(e) => setPendingFilters((f) => ({ ...f, action: e.target.value }))}
-            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -71,7 +71,7 @@ export default function AuditPage() {
             type="date"
             value={pendingFilters.date_from}
             onChange={(e) => setPendingFilters((f) => ({ ...f, date_from: e.target.value }))}
-            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -80,7 +80,7 @@ export default function AuditPage() {
             type="date"
             value={pendingFilters.date_to}
             onChange={(e) => setPendingFilters((f) => ({ ...f, date_to: e.target.value }))}
-            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
         <Button size="sm" onClick={applyFilters} disabled={isLoading}>

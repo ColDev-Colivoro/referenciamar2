@@ -42,9 +42,9 @@ export function FormAssignment({ forms }: FormAssignmentProps) {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <ClipboardList className="h-5 w-5 text-purple-600" />
           Asignación de Planillas
         </CardTitle>
@@ -55,10 +55,10 @@ export function FormAssignment({ forms }: FormAssignmentProps) {
           <h4 className="text-sm font-semibold text-gray-700">Crear/Asignar Nueva Planilla</h4>
           <Input
             placeholder="Nombre de la Planilla (Ej: Ficha Técnica)"
-            className="h-10 text-base border-blue-300 focus:border-blue-500"
+            className="h-10 text-base border-border"
           />
           <Select>
-            <SelectTrigger className="h-10 text-base border-blue-300 focus:border-blue-500">
+            <SelectTrigger className="h-10 text-base border-border">
               <SelectValue placeholder="Asignar a..." />
             </SelectTrigger>
             <SelectContent>
@@ -68,7 +68,7 @@ export function FormAssignment({ forms }: FormAssignmentProps) {
               <SelectItem value="monitor">Monitor Específico</SelectItem>
             </SelectContent>
           </Select>
-          <Button className="w-full h-10 text-base font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 shadow-md rounded-lg">
+          <Button className="w-full h-10 text-base font-semibold bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md rounded-lg">
             <Plus className="h-4 w-4 mr-2" />
             Guardar Planilla
           </Button>

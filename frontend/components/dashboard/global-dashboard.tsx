@@ -8,13 +8,13 @@ import { Progress } from "@/components/ui/progress"
 
 export function GlobalDashboard() {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-primary/30">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Globe className="h-5 w-5 text-indigo-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Globe className="h-5 w-5 text-primary" />
           Panel Administrador Global
         </CardTitle>
-        <Badge className="text-xs font-medium bg-indigo-100 text-indigo-700 w-fit">
+        <Badge className="text-xs font-medium bg-primary/10 text-primary w-fit">
           <Shield className="h-3 w-3 mr-1" />
           ColdevConAC
         </Badge>
@@ -22,9 +22,9 @@ export function GlobalDashboard() {
       <CardContent className="space-y-6">
         {/* Métricas Globales - Más visuales */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-blue-50 p-4 rounded-lg text-center shadow-sm border border-blue-100">
-            <Building2 className="h-6 w-6 mx-auto text-blue-600 mb-2" />
-            <p className="text-xl font-bold text-blue-800">3</p>
+          <div className="bg-primary/10 p-4 rounded-lg text-center shadow-sm border border-primary/20">
+            <Building2 className="h-6 w-6 mx-auto text-primary mb-2" />
+            <p className="text-xl font-bold text-primary">3</p>
             <p className="text-xs text-gray-600">Empresas Activas</p>
           </div>
           <div className="bg-emerald-50 p-4 rounded-lg text-center shadow-sm border border-emerald-100">
@@ -68,7 +68,7 @@ export function GlobalDashboard() {
 
         {/* Acciones Administrativas - Botones con gradiente */}
         <div className="flex gap-3 pt-2">
-          <Button className="flex-1 text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md rounded-lg">
+          <Button className="flex-1 text-sm font-semibold bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md rounded-lg">
             <Building2 className="h-4 w-4 mr-2" />
             Nueva Empresa
           </Button>

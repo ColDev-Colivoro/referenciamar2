@@ -51,10 +51,10 @@ export function CompanyList({ companies }: CompanyListProps) {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Building2 className="h-5 w-5 text-blue-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Building2 className="h-5 w-5 text-primary" />
           Empresas Registradas ({companies.length})
         </CardTitle>
       </CardHeader>
@@ -82,7 +82,7 @@ export function CompanyList({ companies }: CompanyListProps) {
               </div>
 
               <div className="flex gap-2 pt-2">
-                <Button size="sm" className="flex-1 text-xs font-medium bg-blue-600 hover:bg-blue-700 rounded-md">
+                <Button size="sm" className="flex-1 text-xs font-medium bg-primary hover:bg-primary/90 rounded-md">
                   <Eye className="h-3 w-3 mr-1" />
                   Ver Métricas
                 </Button>

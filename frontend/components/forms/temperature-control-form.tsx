@@ -15,14 +15,14 @@ interface TemperatureControlFormProps {
 
 export function TemperatureControlForm({ lotNumber, productType }: TemperatureControlFormProps) {
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Thermometer className="h-5 w-5 text-blue-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Thermometer className="h-5 w-5 text-primary" />
           Planilla: Control de Temperatura
         </CardTitle>
         <div className="flex items-center gap-2">
-          <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Lote: {lotNumber}</Badge>
+          <Badge className="text-xs font-medium bg-primary/10 text-primary">Lote: {lotNumber}</Badge>
           <Badge className="text-xs font-medium bg-emerald-100 text-emerald-700">{productType}</Badge>
         </div>
       </CardHeader>
@@ -33,7 +33,7 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
             <label className="text-sm font-semibold text-gray-700">Temperatura Inicial (°C)</label>
             <Input
               placeholder="-18.5"
-              className="h-10 text-base border-blue-300 focus:border-blue-500"
+              className="h-10 text-base border-border"
               type="number"
               step="0.1"
             />
@@ -42,18 +42,18 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
             <label className="text-sm font-semibold text-gray-700">Temperatura Final (°C)</label>
             <Input
               placeholder="-18.2"
-              className="h-10 text-base border-blue-300 focus:border-blue-500"
+              className="h-10 text-base border-border"
               type="number"
               step="0.1"
             />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">Hora Inicio</label>
-            <Input type="time" className="h-10 text-base border-blue-300 focus:border-blue-500" />
+            <Input type="time" className="h-10 text-base border-border" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">Hora Fin</label>
-            <Input type="time" className="h-10 text-base border-blue-300 focus:border-blue-500" />
+            <Input type="time" className="h-10 text-base border-border" />
           </div>
         </div>
 
@@ -62,7 +62,7 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
           <label className="text-sm font-semibold text-gray-700">Observaciones</label>
           <Textarea
             placeholder="Registrar cualquier anomalía o observación relevante..."
-            className="text-base h-24 border-blue-300 focus:border-blue-500"
+            className="text-base h-24 border-border"
           />
         </div>
 
@@ -73,7 +73,7 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="temp-range"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="temp-range" className="text-sm font-medium text-gray-700">
                 Temperatura dentro del rango permitido
@@ -82,7 +82,7 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="equipment-ok"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="equipment-ok" className="text-sm font-medium text-gray-700">
                 Equipos de medición calibrados y funcionales
@@ -91,7 +91,7 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
             <div className="flex items-center space-x-3">
               <Checkbox
                 id="record-complete"
-                className="h-5 w-5 border-blue-400 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white"
+                className="h-5 w-5 border-primary/50 data-[state=checked]:bg-primary data-[state=checked]:text-white"
               />
               <label htmlFor="record-complete" className="text-sm font-medium text-gray-700">
                 Registro completo, legible y sin errores
@@ -102,7 +102,7 @@ export function TemperatureControlForm({ lotNumber, productType }: TemperatureCo
 
         {/* Botones de Acción */}
         <div className="flex gap-3 pt-4">
-          <Button className="flex-1 h-10 text-base font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-md rounded-lg">
+          <Button className="flex-1 h-10 text-base font-semibold bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md rounded-lg">
             <FileCheck className="h-4 w-4 mr-2" />
             Guardar y Enviar
           </Button>

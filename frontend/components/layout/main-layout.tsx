@@ -38,17 +38,17 @@ export function MainLayout({ children, userRole, userName, companyName }: MainLa
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-100 p-4 font-sans antialiased">
+    <div className="min-h-screen bg-background p-4 font-sans antialiased">
       <header className="mb-8">
-        <Card className="bg-gradient-to-r from-blue-700 to-cyan-600 text-white shadow-lg rounded-xl overflow-hidden">
+        <Card className="bg-card border border-border dark:bg-[#1a1a1a] dark:border-white/10 shadow-lg rounded-xl overflow-hidden">
           <CardHeader className="py-5 px-6 flex flex-row items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="bg-white/20 p-3 rounded-full backdrop-blur-sm">
-                <Waves className="h-9 w-9 text-white" />
+              <div className="bg-primary/20 p-3 rounded-full backdrop-blur-sm">
+                <Waves className="h-9 w-9 text-primary" />
               </div>
               <div>
                 <h1 className="text-3xl font-extrabold tracking-tight">ColdevConAC</h1>
-                <p className="text-blue-100 text-sm opacity-90">Gestión de Calidad Pesquera</p>
+                <p className="text-muted-foreground text-sm opacity-90">Gestión de Calidad Pesquera</p>
               </div>
             </div>
 
@@ -59,7 +59,7 @@ export function MainLayout({ children, userRole, userName, companyName }: MainLa
                     <span className="text-lg font-semibold">{userName}</span>
                     {getRoleBadge()}
                   </div>
-                  <div className="flex items-center justify-end gap-1 text-sm text-blue-200">
+                  <div className="flex items-center justify-end gap-1 text-sm text-muted-foreground">
                     <Building2 className="h-4 w-4" />
                     {companyName}
                   </div>

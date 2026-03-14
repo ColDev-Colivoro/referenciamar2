@@ -33,7 +33,7 @@ export function StatsCards({ stats }: StatsCardsProps) {
   ]
 
   const colorMap: Record<string, string> = {
-    blue: "bg-blue-50 border-blue-200 text-blue-700",
+    blue: "bg-primary/10 border-primary/20 text-primary",
     green: "bg-green-50 border-green-200 text-green-700",
     yellow: "bg-yellow-50 border-yellow-200 text-yellow-700",
     purple: "bg-purple-50 border-purple-200 text-purple-700",

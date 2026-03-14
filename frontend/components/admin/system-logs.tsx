@@ -62,7 +62,7 @@ export function SystemLogs() {
       case "warning":
         return <Badge className="text-xs font-medium bg-amber-100 text-amber-700">Advertencia</Badge>
       case "info":
-        return <Badge className="text-xs font-medium bg-blue-100 text-blue-700">Info</Badge>
+        return <Badge className="text-xs font-medium bg-primary/10 text-primary">Info</Badge>
       default:
         return <Badge className="text-xs font-medium bg-gray-100 text-gray-700">Debug</Badge>
     }
@@ -75,16 +75,16 @@ export function SystemLogs() {
       case "warning":
         return <AlertTriangle className="h-4 w-4 text-amber-600" />
       case "info":
-        return <Info className="h-4 w-4 text-blue-600" />
+        return <Info className="h-4 w-4 text-primary" />
       default:
         return <FileText className="h-4 w-4 text-gray-600" />
     }
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <FileText className="h-5 w-5 text-gray-600" />
           Logs del Sistema
         </CardTitle>
@@ -93,7 +93,7 @@ export function SystemLogs() {
         {/* Filtros */}
         <div className="grid grid-cols-2 gap-3">
           <Select>
-            <SelectTrigger className="h-10 text-base border-blue-300 focus:border-blue-500">
+            <SelectTrigger className="h-10 text-base border-border">
               <SelectValue placeholder="Filtrar por nivel" />
             </SelectTrigger>
             <SelectContent>
@@ -103,7 +103,7 @@ export function SystemLogs() {
               <SelectItem value="info">Información</SelectItem>
             </SelectContent>
           </Select>
-          <Input placeholder="Buscar en logs..." className="h-10 text-base border-blue-300 focus:border-blue-500" />
+          <Input placeholder="Buscar en logs..." className="h-10 text-base border-border" />
         </div>
 
         {/* Lista de Logs */}

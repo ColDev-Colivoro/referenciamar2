@@ -18,10 +18,10 @@ export function LotManagement() {
   const approved = lots.filter((l) => l.status === "approved").length
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
-          <Package className="h-5 w-5 text-blue-600" />
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
+          <Package className="h-5 w-5 text-primary" />
           Gestión de Lotes
         </CardTitle>
       </CardHeader>
@@ -32,8 +32,8 @@ export function LotManagement() {
             <p className="text-xl font-bold text-yellow-800">{pending}</p>
             <p className="text-xs text-gray-600">Pendientes</p>
           </div>
-          <div className="bg-blue-50 p-2 rounded-lg shadow-sm border border-blue-100">
-            <p className="text-xl font-bold text-blue-800">{inProcess}</p>
+          <div className="bg-primary/10 p-2 rounded-lg shadow-sm border border-border">
+            <p className="text-xl font-bold text-foreground">{inProcess}</p>
             <p className="text-xs text-gray-600">En Proceso</p>
           </div>
           <div className="bg-emerald-50 p-2 rounded-lg shadow-sm border border-emerald-100">
@@ -45,7 +45,7 @@ export function LotManagement() {
         {/* Crear Nuevo Lote */}
         <div className="border-t pt-4 mt-4 border-gray-200">
           <Button
-            className="w-full h-10 text-base font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-md rounded-lg"
+            className="w-full h-10 text-base font-semibold bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md rounded-lg"
             onClick={() => setFormOpen(true)}
           >
             <Plus className="h-4 w-4 mr-2" />

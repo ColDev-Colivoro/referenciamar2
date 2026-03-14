@@ -38,9 +38,9 @@ export function QualityBreakdown({ metrics }: QualityBreakdownProps) {
   }
 
   return (
-    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-blue-200">
+    <Card className="w-full bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-border">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-bold text-blue-800 flex items-center gap-2">
+        <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
           <FlaskConical className="h-5 w-5 text-emerald-600" />
           Desglose de Calidad
         </CardTitle>
@@ -67,9 +67,9 @@ export function QualityBreakdown({ metrics }: QualityBreakdownProps) {
         </div>
 
         {/* Resumen de Auditorías Internas */}
-        <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 text-sm">
-          <p className="font-medium text-blue-800">Auditorías Internas</p>
-          <p className="text-blue-600 mt-1 flex items-center gap-2">
+        <div className="bg-primary/10 p-3 rounded-lg border border-border text-sm">
+          <p className="font-medium text-foreground">Auditorías Internas</p>
+          <p className="text-primary mt-1 flex items-center gap-2">
             <CheckCircle className="h-4 w-4 text-emerald-600" />
             Última auditoría: <span className="font-semibold">99.5% de cumplimiento</span>
           </p>
