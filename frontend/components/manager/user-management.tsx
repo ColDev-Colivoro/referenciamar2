@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState, type FormEvent } from "react"
 import { Loader2, RefreshCw, Shield, UserCheck, UserPlus, UserX, Users } from "lucide-react"
 
 import { ApiError } from "@/lib/api/client"
-import { createUser, listRoles, listUsers, updateMembership } from "@/lib/users/api"
-import type { Role, UserMembership } from "@/lib/users/types"
+import { getRolePresentation } from "@/lib/auth/roles"
+import { useUsers } from "@/hooks/use-users"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -27,59 +27,21 @@ const emptyForm = {
   role_id: "",
 }
 
-const roleBadgeStyles: Record<string, string> = {
-  global_admin: "bg-indigo-100 text-indigo-700",
-  tenant_admin: "bg-violet-100 text-violet-700",
-  manager: "bg-emerald-100 text-emerald-700",
-  quality_manager: "bg-amber-100 text-amber-700",
-  monitor: "bg-sky-100 text-sky-700",
-  production_supervisor: "bg-orange-100 text-orange-700",
-}
-
-const roleLabels: Record<string, string> = {
-  global_admin: "Administrador Global",
-  tenant_admin: "Administrador Tenant",
-  manager: "Gerente",
-  quality_manager: "Jefe de Calidad",
-  monitor: "Monitor",
-  production_supervisor: "Jefe de Planta",
-}
-
 export function UserManagement({ canManage = true, tenantName, currentUserRoleLabel }: UserManagementProps) {
-  const [users, setUsers] = useState<UserMembership[]>([])
-  const [roles, setRoles] = useState<Role[]>([])
-  const [isLoading, setIsLoading] = useState(canManage)
+  const { users, roles, isLoading, error: hookError, refresh, createUser, updateMembership } = useUsers()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState("")
+  const [submitError, setSubmitError] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
   const [formData, setFormData] = useState(emptyForm)
 
-  const loadData = async () => {
-    if (!canManage) {
-      return
-    }
-
-    setIsLoading(true)
-    setError("")
-
-    try {
-      const [memberships, nextRoles] = await Promise.all([listUsers(), listRoles()])
-      setUsers(memberships)
-      setRoles(nextRoles)
+  useEffect(() => {
+    if (roles.length > 0) {
       setFormData((current) => ({
         ...current,
-        role_id: current.role_id || (nextRoles[0] ? String(nextRoles[0].id) : ""),
+        role_id: current.role_id || String(roles[0].id),
       }))
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "No fue posible cargar la gestión de usuarios.")
-    } finally {
-      setIsLoading(false)
     }
-  }
-
-  useEffect(() => {
-    void loadData()
-  }, [canManage])
+  }, [roles])
 
   const summary = useMemo(() => {
     const active = users.filter((user) => user.is_active).length
@@ -89,11 +51,14 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
     return { total: users.length, active, inactive, admins }
   }, [users])
 
-  const getRoleBadge = (role: string) => (
-    <Badge className={`text-xs font-medium ${roleBadgeStyles[role] ?? "bg-gray-100 text-gray-700"}`}>
-      {roleLabels[role] ?? role}
-    </Badge>
-  )
+  const getRoleBadge = (role: string) => {
+    const presentation = getRolePresentation(role as Parameters<typeof getRolePresentation>[0])
+    return (
+      <Badge className={`text-xs font-medium ${presentation.color}`}>
+        {presentation.label}
+      </Badge>
+    )
+  }
 
   const getStatusBadge = (isActive: boolean) => {
     if (isActive) {
@@ -114,16 +79,16 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
   const handleCreateUser = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!formData.role_id) {
-      setError("Debes seleccionar un rol.")
+      setSubmitError("Debes seleccionar un rol.")
       return
     }
 
     setIsSubmitting(true)
-    setError("")
+    setSubmitError("")
     setSuccessMessage("")
 
     try {
-      const newMembership = await createUser({
+      await createUser({
         username: formData.username,
         password: formData.password,
         first_name: formData.first_name,
@@ -132,26 +97,24 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
         role_id: Number(formData.role_id),
       })
 
-      setUsers((current) => [newMembership, ...current])
       setFormData({ ...emptyForm, role_id: formData.role_id })
       setSuccessMessage("Usuario creado correctamente.")
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "No fue posible crear el usuario.")
+      setSubmitError(err instanceof ApiError ? err.message : "No fue posible crear el usuario.")
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const handleMembershipUpdate = async (membershipId: number, payload: { role_id?: number; is_active?: boolean }) => {
-    setError("")
+    setSubmitError("")
     setSuccessMessage("")
 
     try {
-      const updatedMembership = await updateMembership(membershipId, payload)
-      setUsers((current) => current.map((membership) => (membership.id === membershipId ? updatedMembership : membership)))
+      await updateMembership(membershipId, payload)
       setSuccessMessage("Membresía actualizada.")
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "No fue posible actualizar la membresía.")
+      setSubmitError(err instanceof ApiError ? err.message : "No fue posible actualizar la membresía.")
     }
   }
 
@@ -184,7 +147,7 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
             <Users className="h-5 w-5 text-emerald-600" />
             Gestión de Usuarios
           </CardTitle>
-          <Button type="button" size="sm" variant="outline" className="gap-2 bg-transparent" onClick={() => void loadData()} disabled={isLoading}>
+          <Button type="button" size="sm" variant="outline" className="gap-2 bg-transparent" onClick={() => void refresh()} disabled={isLoading}>
             {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
             Recargar
           </Button>
@@ -267,7 +230,7 @@ export function UserManagement({ canManage = true, tenantName, currentUserRoleLa
           </Button>
         </form>
 
-        {error ? <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div> : null}
+        {hookError || submitError ? <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{hookError || submitError}</div> : null}
         {successMessage ? <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">{successMessage}</div> : null}
 
         <div className="space-y-3">

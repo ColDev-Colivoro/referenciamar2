@@ -15,12 +15,12 @@
 
 ## Phase 3: Frontend
 
-- [ ] 3.1 Modify `frontend/lib/users/api.ts` — add exported function `deactivateUser(membershipId: number): Promise<void>` that calls `DELETE /api/v1/users/{membershipId}/`. Done when the function is exported and TypeScript compilation passes with no errors.
-- [ ] 3.2 Create `frontend/hooks/use-users.ts` — implement `useUsers()` hook with state `{ users, roles, isLoading, error }` initialized by parallel `listUsers()` + `listRoles()` on mount. Expose `refresh()`, `createUser()`, `updateMembership()`, `deactivateUser()` with optimistic-on-success local state updates (append / replace / filter). Done when hook satisfies the `UseUsersReturn` interface in `design.md` and TypeScript compiles clean.
-- [ ] 3.3 Modify `frontend/components/manager/user-management.tsx` — replace direct API calls with `useUsers()` hook (remove raw `useState`/`useEffect` managing users and roles). Done when component uses `const { users, roles, isLoading, error, createUser, updateMembership, deactivateUser } = useUsers()`.
-- [ ] 3.4 Modify `frontend/components/manager/user-management.tsx` — delete `roleBadgeStyles` and `roleLabels` constants; replace `getRoleBadge(role)` with `getRolePresentation(role.code)` imported from `@/lib/auth/roles`. Done when `grep -n "roleLabels\|roleBadgeStyles"` returns no matches in the file.
-- [ ] 3.5 Modify `frontend/components/manager/user-management.tsx` — populate role `<select>` from `roles` returned by `useUsers()` instead of any hardcoded list. Done when the selector renders one `<option>` per role from the backend.
-- [ ] 3.6 Modify `frontend/components/manager/user-management.tsx` — add loading indicator while `isLoading` is `true` and error display when `error` is non-empty. Done when the component shows a spinner or skeleton during load and a visible error message on failure.
+- [x] 3.1 Modify `frontend/lib/users/api.ts` — add exported function `deactivateUser(membershipId: number): Promise<void>` that calls `DELETE /api/v1/users/{membershipId}/`. Done when the function is exported and TypeScript compilation passes with no errors.
+- [x] 3.2 Create `frontend/hooks/use-users.ts` — implement `useUsers()` hook with state `{ users, roles, isLoading, error }` initialized by parallel `listUsers()` + `listRoles()` on mount. Expose `refresh()`, `createUser()`, `updateMembership()`, `deactivateUser()` with optimistic-on-success local state updates (append / replace / filter). Done when hook satisfies the `UseUsersReturn` interface in `design.md` and TypeScript compiles clean.
+- [x] 3.3 Modify `frontend/components/manager/user-management.tsx` — replace direct API calls with `useUsers()` hook (remove raw `useState`/`useEffect` managing users and roles). Done when component uses `const { users, roles, isLoading, error, createUser, updateMembership, deactivateUser } = useUsers()`.
+- [x] 3.4 Modify `frontend/components/manager/user-management.tsx` — delete `roleBadgeStyles` and `roleLabels` constants; replace `getRoleBadge(role)` with `getRolePresentation(role.code)` imported from `@/lib/auth/roles`. Done when `grep -n "roleLabels\|roleBadgeStyles"` returns no matches in the file.
+- [x] 3.5 Modify `frontend/components/manager/user-management.tsx` — populate role `<select>` from `roles` returned by `useUsers()` instead of any hardcoded list. Done when the selector renders one `<option>` per role from the backend.
+- [x] 3.6 Modify `frontend/components/manager/user-management.tsx` — add loading indicator while `isLoading` is `true` and error display when `error` is non-empty. Done when the component shows a spinner or skeleton during load and a visible error message on failure.
 
 ## Phase 4: Testing
 

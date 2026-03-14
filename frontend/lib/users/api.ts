@@ -23,3 +23,9 @@ export function updateMembership(membershipId: number, input: UpdateMembershipIn
     body: JSON.stringify(input),
   })
 }
+
+export function deactivateUser(membershipId: number) {
+  return apiRequest<void>(`/api/v1/users/${membershipId}/`, {
+    method: "DELETE",
+  })
+}
