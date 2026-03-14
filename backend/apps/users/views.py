@@ -45,6 +45,21 @@ class UserListCreateView(APIView):
 class UserMembershipDetailView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
+    def get(self, request, membership_id: int):
+        membership = get_request_membership(request)
+        if not membership_can_manage_users(membership):
+            return Response({"detail": "No autorizado."}, status=status.HTTP_403_FORBIDDEN)
+
+        target = (
+            UserMembership.objects.filter(id=membership_id, tenant=membership.tenant)
+            .select_related("user", "role", "tenant")
+            .first()
+        )
+        if target is None:
+            return Response({"detail": "Usuario no encontrado."}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response(UserMembershipSerializer(target).data)
+
     def patch(self, request, membership_id: int):
         membership = get_request_membership(request)
         if not membership_can_manage_users(membership):
@@ -68,6 +83,29 @@ class UserMembershipDetailView(APIView):
             metadata={"target_membership_id": target.id, "role": target.role.code, "is_active": target.is_active},
         )
         return Response(UserMembershipSerializer(target).data)
+
+    def delete(self, request, membership_id: int):
+        membership = get_request_membership(request)
+        if not membership_can_manage_users(membership):
+            return Response({"detail": "No autorizado."}, status=status.HTTP_403_FORBIDDEN)
+
+        target = (
+            UserMembership.objects.filter(id=membership_id, tenant=membership.tenant)
+            .select_related("user", "role", "tenant")
+            .first()
+        )
+        if target is None:
+            return Response({"detail": "Usuario no encontrado."}, status=status.HTTP_404_NOT_FOUND)
+
+        target.is_active = False
+        target.save(update_fields=["is_active", "updated_at"])
+        log_audit_event(
+            action="users.deactivate",
+            tenant=membership.tenant,
+            actor=request.user,
+            metadata={"target_membership_id": target.id},
+        )
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class RoleListView(APIView):

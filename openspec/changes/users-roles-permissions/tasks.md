@@ -9,9 +9,9 @@
 
 ## Phase 2: Backend API Completion
 
-- [ ] 2.1 Modify `backend/apps/users/views.py` — add `UserMembershipDetailView.get(self, request, membership_id)`: fetch `UserMembership` filtered by `id=membership_id` and `tenant=membership.tenant`, return 200 with `UserMembershipSerializer` data or 404 if not found, 403 if caller cannot manage users. Done when `GET /api/v1/users/{id}/` returns 200 for own tenant and 404 for a cross-tenant ID.
-- [ ] 2.2 Modify `backend/apps/users/views.py` — add `UserMembershipDetailView.delete(self, request, membership_id)`: fetch target membership, set `is_active=False`, call `target.save(update_fields=["is_active", "updated_at"])`, log `log_audit_event("users.deactivate", ...)`, return 204. Done when `DELETE /api/v1/users/{id}/` returns 204 and `UserMembership.objects.get(id=id).is_active == False`.
-- [ ] 2.3 Verify `backend/apps/users/urls.py` — confirm `UserMembershipDetailView` is wired to `<int:membership_id>/` pattern covering GET, PATCH, and DELETE. Done when all three HTTP methods route correctly without a 405.
+- [x] 2.1 Modify `backend/apps/users/views.py` — add `UserMembershipDetailView.get(self, request, membership_id)`: fetch `UserMembership` filtered by `id=membership_id` and `tenant=membership.tenant`, return 200 with `UserMembershipSerializer` data or 404 if not found, 403 if caller cannot manage users. Done when `GET /api/v1/users/{id}/` returns 200 for own tenant and 404 for a cross-tenant ID.
+- [x] 2.2 Modify `backend/apps/users/views.py` — add `UserMembershipDetailView.delete(self, request, membership_id)`: fetch target membership, set `is_active=False`, call `target.save(update_fields=["is_active", "updated_at"])`, log `log_audit_event("users.deactivate", ...)`, return 204. Done when `DELETE /api/v1/users/{id}/` returns 204 and `UserMembership.objects.get(id=id).is_active == False`.
+- [x] 2.3 Verify `backend/apps/users/urls.py` — confirm `UserMembershipDetailView` is wired to `<int:membership_id>/` pattern covering GET, PATCH, and DELETE. Done when all three HTTP methods route correctly without a 405.
 
 ## Phase 3: Frontend
 
