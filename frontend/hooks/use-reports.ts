@@ -12,11 +12,11 @@ import type { DashboardStats } from "@/lib/reports/types"
 export function useReports() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
 
   const refresh = useCallback(async () => {
     setIsLoading(true)
-    setError("")
+    setError(null)
     try {
       const data = await getDashboardStats()
       setStats(data)

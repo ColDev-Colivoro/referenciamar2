@@ -46,18 +46,30 @@ export function useForms(lotId: number): UseFormsReturn {
 
   const createForm = useCallback(
     async (input: CreateFormInput) => {
-      const newForm = await createFormApi(lotId, input)
-      setForms((current) => [newForm, ...current])
-      return newForm
+      try {
+        const newForm = await createFormApi(lotId, input)
+        setForms((current) => [newForm, ...current])
+        return newForm
+      } catch (err) {
+        const msg = err instanceof ApiError ? err.message : "Error al crear formulario"
+        setError(msg)
+        throw err
+      }
     },
     [lotId],
   )
 
   const changeFormStatus = useCallback(
     async (formId: number, status: FormStatus) => {
-      const updated = await changeFormStatusApi(lotId, formId, status)
-      setForms((current) => current.map((f) => (f.id === formId ? updated : f)))
-      return updated
+      try {
+        const updated = await changeFormStatusApi(lotId, formId, status)
+        setForms((current) => current.map((f) => (f.id === formId ? updated : f)))
+        return updated
+      } catch (err) {
+        const msg = err instanceof ApiError ? err.message : "Error al cambiar estado del formulario"
+        setError(msg)
+        throw err
+      }
     },
     [lotId],
   )

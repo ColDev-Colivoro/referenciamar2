@@ -17,11 +17,11 @@ import type { CreateLotInput, Lot, LotStatus, UpdateLotInput } from "@/lib/lots/
 export function useLots() {
   const [lots, setLots] = useState<Lot[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
 
   const refresh = useCallback(async () => {
     setIsLoading(true)
-    setError("")
+    setError(null)
     try {
       const data = await listLots()
       setLots(data)
@@ -37,21 +37,39 @@ export function useLots() {
   }, [refresh])
 
   const createLot = useCallback(async (input: CreateLotInput) => {
-    const newLot = await createLotApi(input)
-    setLots((current) => [newLot, ...current])
-    return newLot
+    try {
+      const newLot = await createLotApi(input)
+      setLots((current) => [newLot, ...current])
+      return newLot
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Error al crear lote"
+      setError(msg)
+      throw err
+    }
   }, [])
 
   const updateLot = useCallback(async (id: number, input: UpdateLotInput) => {
-    const updated = await updateLotApi(id, input)
-    setLots((current) => current.map((l) => (l.id === id ? updated : l)))
-    return updated
+    try {
+      const updated = await updateLotApi(id, input)
+      setLots((current) => current.map((l) => (l.id === id ? updated : l)))
+      return updated
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Error al actualizar lote"
+      setError(msg)
+      throw err
+    }
   }, [])
 
   const changeLotStatus = useCallback(async (id: number, status: LotStatus) => {
-    const updated = await changeLotStatusApi(id, status)
-    setLots((current) => current.map((l) => (l.id === id ? updated : l)))
-    return updated
+    try {
+      const updated = await changeLotStatusApi(id, status)
+      setLots((current) => current.map((l) => (l.id === id ? updated : l)))
+      return updated
+    } catch (err) {
+      const msg = err instanceof ApiError ? err.message : "Error al cambiar estado del lote"
+      setError(msg)
+      throw err
+    }
   }, [])
 
   return useMemo(

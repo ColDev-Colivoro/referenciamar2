@@ -10,12 +10,12 @@ export function useAudit(initialFilters: AuditFilters = {}) {
   const [events, setEvents] = useState<AuditEvent[]>([])
   const [total, setTotal] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
   const [filters, setFilters] = useState<AuditFilters>(initialFilters)
 
   const refresh = useCallback(async () => {
     setIsLoading(true)
-    setError("")
+    setError(null)
     try {
       const data = await listAuditEvents(filters)
       setEvents(data.results)
