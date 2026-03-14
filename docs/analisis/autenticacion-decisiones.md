@@ -1,7 +1,7 @@
 # Autenticación — Decisiones técnicas
 
 **Fecha decisión**: 2026-03-14  
-**Estado**: Aprobado, pendiente de implementación
+**Estado**: ✅ Implementado — 2026-03-14
 
 ---
 
@@ -11,7 +11,7 @@
 
 **Librería**: `djangorestframework` (ya instalado)  
 **Tiempo estimado**: 2-3 días  
-**Estado**: ⏳ Pendiente
+**Estado**: ✅ Implementado — 2026-03-14
 
 ### Phase 2 (Production): Django User model + JWT
 
@@ -169,12 +169,14 @@ En JWT Phase 2: se puede incluir `tenant_id` en el payload para acelerar resoluc
 
 ## Archivos a crear/modificar
 
-| Archivo | Acción |
-|---------|--------|
-| `backend/requirements/base.txt` | Agregar `djangorestframework-simplejwt` (Phase 2) |
-| `backend/config/settings/base.py` | REST_FRAMEWORK + authtoken app |
-| `backend/apps/authentication/views.py` | LoginView devuelve token |
-| `frontend/lib/auth.ts` | Crear — token storage helpers |
-| `frontend/lib/api.ts` | Modificar — agregar Authorization header |
-| `frontend/hooks/useAuth.ts` | Crear — hook de autenticación |
-| `backend/tests/test_auth.py` | Tests del flujo |
+| Archivo | Acción | Estado |
+|---------|--------|--------|
+| `backend/requirements/base.txt` | Agregar `djangorestframework-simplejwt` (Phase 2) | 📋 Phase 2 |
+| `backend/config/settings/base.py` | REST_FRAMEWORK + authtoken app | ✅ |
+| `backend/apps/authentication/views.py` | LoginView devuelve token | ✅ |
+| `frontend/lib/auth/token.ts` | Crear — token storage helpers | ✅ |
+| `frontend/lib/api/client.ts` | Modificar — agregar Authorization header | ✅ |
+| `frontend/lib/auth/session.ts` | setToken tras login exitoso | ✅ |
+| `frontend/lib/auth/logout.ts` | clearToken tras logout exitoso | ✅ |
+| `frontend/lib/auth/types.ts` | accessToken required | ✅ |
+| `backend/tests/test_auth_token.py` | 8 tests del flujo — todos ✅ | ✅ |

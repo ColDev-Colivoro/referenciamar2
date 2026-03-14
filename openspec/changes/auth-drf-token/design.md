@@ -136,16 +136,16 @@ Component                Frontend                      Backend
 
 ## File Changes
 
-| File | Action | Description |
-|------|--------|-------------|
-| `backend/config/settings/base.py` | Modify | Add `rest_framework.authtoken` to `INSTALLED_APPS`; add `TokenAuthentication` as first class in `DEFAULT_AUTHENTICATION_CLASSES`; add `Authorization` to `CORS_ALLOW_HEADERS` |
-| `backend/apps/authentication/views.py` | Modify | `LoginView.post()`: add `Token.objects.get_or_create(user=user)` and include token in response. `LogoutView.post()`: delete token before `logout(request)` |
-| `frontend/lib/auth/token.ts` | Create | `getToken()`, `setToken(token)`, `clearToken()` — wraps `localStorage` with key `coldevconac_token` |
-| `frontend/lib/api/client.ts` | Modify | Read `getToken()` and inject `Authorization: Token <key>` when non-null |
-| `frontend/lib/auth/types.ts` | Modify | Change `accessToken?: string` → `accessToken: string` (required) |
-| `frontend/lib/auth/session.ts` | Modify | After successful `login()`, call `setToken(response.accessToken)` |
-| `frontend/lib/auth/logout.ts` | Modify | After successful `logout()`, call `clearToken()` |
-| `backend/tests/test_auth_token.py` | Create | pytest tests: login returns token, logout deletes token, protected endpoint 401/200 |
+| File | Action | Description | Status |
+|------|--------|-------------|--------|
+| `backend/config/settings/base.py` | Modify | Add `rest_framework.authtoken` to `INSTALLED_APPS`; add `TokenAuthentication` as first class in `DEFAULT_AUTHENTICATION_CLASSES`; add `Authorization` to `CORS_ALLOW_HEADERS` | ✅ |
+| `backend/apps/authentication/views.py` | Modify | `LoginView.post()`: add `Token.objects.get_or_create(user=user)` and include token in response. `LogoutView.post()`: delete token before `logout(request)` | ✅ |
+| `frontend/lib/auth/token.ts` | Create | `getToken()`, `setToken(token)`, `clearToken()` — wraps `localStorage` with key `coldevconac_token` | ✅ |
+| `frontend/lib/api/client.ts` | Modify | Read `getToken()` and inject `Authorization: Token <key>` when non-null | ✅ |
+| `frontend/lib/auth/types.ts` | Modify | Change `accessToken?: string` → `accessToken: string` (required) | ✅ |
+| `frontend/lib/auth/session.ts` | Modify | After successful `login()`, call `setToken(response.accessToken)` | ✅ |
+| `frontend/lib/auth/logout.ts` | Modify | After successful `logout()`, call `clearToken()` | ✅ |
+| `backend/tests/test_auth_token.py` | Create | pytest tests: login returns token, logout deletes token, protected endpoint 401/200 | ✅ 8/8 passed |
 
 ---
 

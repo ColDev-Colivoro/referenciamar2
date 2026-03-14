@@ -34,8 +34,8 @@
 
 ## Phase 5: Cleanup & Verification
 
-- [ ] 5.1 Verify `useSession` hook works end-to-end: login via UI → token in localStorage → `/api/v1/auth/me/` returns user → `isAuthenticated: true` in hook (no code change expected, manual smoke test)
-- [ ] 5.2 Verify logout end-to-end: `logout()` in UI → token removed from localStorage → subsequent `/api/v1/auth/me/` call returns 401 → `useSession` sets `isAuthenticated: false`
-- [ ] 5.3 Verify Django Admin still works: open `/admin/`, login with session — confirm `SessionAuthentication` is unaffected by the token changes
-- [ ] 5.4 `openspec/changes/auth-drf-token/design.md` — Update "Files Affected" table to mark all items as ✅ completed
-- [ ] 5.5 `docs/analisis/autenticacion-decisiones.md` — Update Phase 1 status to "✅ Implementado" with date
+- [x] 5.1 Verify `useSession` hook works end-to-end: login via UI → token in localStorage → `/api/v1/auth/me/` returns user → `isAuthenticated: true` in hook (no code change expected, manual smoke test)
+- [x] 5.2 Verify logout end-to-end: `logout()` in UI → token removed from localStorage → subsequent `/api/v1/auth/me/` call returns 401 → `useSession` sets `isAuthenticated: false`
+- [x] 5.3 Verify Django Admin still works: open `/admin/`, login with session — confirm `SessionAuthentication` is unaffected by the token changes
+- [x] 5.4 `openspec/changes/auth-drf-token/design.md` — Update "Files Affected" table to mark all items as ✅ completed
+- [x] 5.5 `docs/analisis/autenticacion-decisiones.md` — Update Phase 1 status to "✅ Implementado" with date
