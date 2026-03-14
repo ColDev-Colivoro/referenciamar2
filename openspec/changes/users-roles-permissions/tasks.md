@@ -24,16 +24,16 @@
 
 ## Phase 4: Testing
 
-- [ ] 4.1 Create `backend/tests/test_users.py` — add local fixtures `admin_role` (code=`"tenant_admin"`, permissions=`["users.manage"]`) and `admin_membership` (user + tenant + admin_role). These fixtures must NOT conflict with the `role` fixture in `conftest.py`.
-- [ ] 4.2 In `backend/tests/test_users.py` — write test `test_list_users_as_admin`: `GET /api/v1/users/` with `authenticated_client` using admin_membership returns 200 and a non-empty list.
-- [ ] 4.3 In `backend/tests/test_users.py` — write test `test_list_users_forbidden_for_monitor`: `GET /api/v1/users/` with a `monitor` membership returns 403.
-- [ ] 4.4 In `backend/tests/test_users.py` — write test `test_create_user_valid`: `POST /api/v1/users/` with valid payload returns 201 and the response contains `is_active: true` and an audit event `users.create`.
-- [ ] 4.5 In `backend/tests/test_users.py` — write test `test_create_user_duplicate_username`: `POST /api/v1/users/` with an already-used `username` returns 400 and no new `UserMembership` is created.
-- [ ] 4.6 In `backend/tests/test_users.py` — write test `test_get_membership_detail_own_tenant`: `GET /api/v1/users/{membership.id}/` returns 200 with correct `id` in response.
-- [ ] 4.7 In `backend/tests/test_users.py` — write test `test_get_membership_detail_cross_tenant_returns_404`: `GET /api/v1/users/{membership_b.id}/` from tenant A context returns 404.
-- [ ] 4.8 In `backend/tests/test_users.py` — write test `test_delete_membership_soft_deletes`: `DELETE /api/v1/users/{membership.id}/` returns 204, `UserMembership.objects.get(id=...).is_active == False`, and the underlying `User` record still exists.
-- [ ] 4.9 In `backend/tests/test_users.py` — write test `test_list_roles_authenticated`: `GET /api/v1/users/roles/` with valid token returns 200 with a list where each item has `id`, `code`, `name`, `permissions` fields.
-- [ ] 4.10 In `backend/tests/test_users.py` — write test `test_membership_can_manage_users_via_permissions`: directly call `membership_can_manage_users` with a membership whose `role.code` is NOT in `ADMIN_ROLE_CODES` but `role.permissions = ["users.manage"]` — assert it returns `True`.
+- [x] 4.1 Create `backend/tests/test_users.py` — add local fixtures `admin_role` (code=`"tenant_admin"`, permissions=`["users.manage"]`) and `admin_membership` (user + tenant + admin_role). These fixtures must NOT conflict with the `role` fixture in `conftest.py`.
+- [x] 4.2 In `backend/tests/test_users.py` — write test `test_list_users_as_admin`: `GET /api/v1/users/` with `authenticated_client` using admin_membership returns 200 and a non-empty list.
+- [x] 4.3 In `backend/tests/test_users.py` — write test `test_list_users_forbidden_for_monitor`: `GET /api/v1/users/` with a `monitor` membership returns 403.
+- [x] 4.4 In `backend/tests/test_users.py` — write test `test_create_user_valid`: `POST /api/v1/users/` with valid payload returns 201 and the response contains `is_active: true` and an audit event `users.create`.
+- [x] 4.5 In `backend/tests/test_users.py` — write test `test_create_user_duplicate_username`: `POST /api/v1/users/` with an already-used `username` returns 400 and no new `UserMembership` is created.
+- [x] 4.6 In `backend/tests/test_users.py` — write test `test_get_membership_detail_own_tenant`: `GET /api/v1/users/{membership.id}/` returns 200 with correct `id` in response.
+- [x] 4.7 In `backend/tests/test_users.py` — write test `test_get_membership_detail_cross_tenant_returns_404`: `GET /api/v1/users/{membership_b.id}/` from tenant A context returns 404.
+- [x] 4.8 In `backend/tests/test_users.py` — write test `test_delete_membership_soft_deletes`: `DELETE /api/v1/users/{membership.id}/` returns 204, `UserMembership.objects.get(id=...).is_active == False`, and the underlying `User` record still exists.
+- [x] 4.9 In `backend/tests/test_users.py` — write test `test_list_roles_authenticated`: `GET /api/v1/users/roles/` with valid token returns 200 with a list where each item has `id`, `code`, `name`, `permissions` fields.
+- [x] 4.10 In `backend/tests/test_users.py` — write test `test_membership_can_manage_users_via_permissions`: directly call `membership_can_manage_users` with a membership whose `role.code` is NOT in `ADMIN_ROLE_CODES` but `role.permissions = ["users.manage"]` — assert it returns `True`.
 
 ## Phase 5: Cleanup & Verification
 

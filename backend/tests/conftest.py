@@ -101,3 +101,60 @@ def authenticated_client(api_client, auth_token, tenant):
         HTTP_X_TENANT_SLUG=tenant.slug,
     )
     return api_client
+
+
+# ── fixtures for users/roles/permissions tests ───────────────────────────────
+
+@pytest.fixture
+def seeded_roles(db):
+    """Creates all 6 canonical roles; returns {code: role}."""
+    from apps.users.management.commands.seed_roles import CANONICAL_ROLES
+
+    roles = {}
+    for role_def in CANONICAL_ROLES:
+        role, _ = Role.objects.update_or_create(
+            code=role_def["code"],
+            defaults={"name": role_def["name"], "permissions": role_def["permissions"]},
+        )
+        roles[role_def["code"]] = role
+    return roles
+
+
+@pytest.fixture
+def admin_membership(db, user, tenant, seeded_roles):
+    return UserMembership.objects.create(
+        user=user,
+        tenant=tenant,
+        role=seeded_roles["tenant_admin"],
+        is_active=True,
+    )
+
+
+@pytest.fixture
+def monitor_membership(db, user, tenant, seeded_roles):
+    return UserMembership.objects.create(
+        user=user,
+        tenant=tenant,
+        role=seeded_roles["monitor"],
+        is_active=True,
+    )
+
+
+@pytest.fixture
+def admin_client(api_client, user, admin_membership, tenant):
+    token, _ = Token.objects.get_or_create(user=user)
+    api_client.credentials(
+        HTTP_AUTHORIZATION=f"Token {token.key}",
+        HTTP_X_TENANT_SLUG=tenant.slug,
+    )
+    return api_client
+
+
+@pytest.fixture
+def monitor_client(api_client, user, monitor_membership, tenant):
+    token, _ = Token.objects.get_or_create(user=user)
+    api_client.credentials(
+        HTTP_AUTHORIZATION=f"Token {token.key}",
+        HTTP_X_TENANT_SLUG=tenant.slug,
+    )
+    return api_client
