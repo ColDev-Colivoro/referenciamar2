@@ -3,12 +3,16 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+import django.utils.timezone as tz
 
 from apps.audit.services import log_audit_event
 from apps.users.services import get_request_membership
-from .models import Lot
-from .serializers import LotSerializer, LotCreateSerializer, LotStatusSerializer
-from .permissions import lot_can_write
+from .models import Lot, QualityForm, FormField
+from .serializers import (
+    LotSerializer, LotCreateSerializer, LotStatusSerializer,
+    QualityFormSerializer, QualityFormCreateSerializer, QualityFormStatusSerializer,
+)
+from .permissions import lot_can_write, form_can_approve
 
 
 def _get_lot_or_404(lot_id, tenant):
@@ -116,3 +120,101 @@ class LotStatusView(APIView):
             metadata={"resource_type": "lot", "resource_id": lot.id, "new_status": lot.status},
         )
         return Response(LotSerializer(lot).data)
+
+
+def _get_form_or_404(form_id, lot, tenant):
+    try:
+        return QualityForm.objects.get(pk=form_id, lot=lot, tenant=tenant)
+    except QualityForm.DoesNotExist:
+        return None
+
+
+class FormListCreateView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, lot_id):
+        membership = get_request_membership(request)
+        if not membership:
+            return Response({"detail": "Membership not found."}, status=status.HTTP_401_UNAUTHORIZED)
+        lot = _get_lot_or_404(lot_id, membership.tenant)
+        if not lot:
+            return Response({"detail": "Lot not found."}, status=status.HTTP_404_NOT_FOUND)
+        forms = QualityForm.objects.filter(lot=lot, tenant=membership.tenant).prefetch_related("fields")
+        return Response(QualityFormSerializer(forms, many=True).data)
+
+    def post(self, request, lot_id):
+        membership = get_request_membership(request)
+        if not membership:
+            return Response({"detail": "Membership not found."}, status=status.HTTP_401_UNAUTHORIZED)
+        lot = _get_lot_or_404(lot_id, membership.tenant)
+        if not lot:
+            return Response({"detail": "Lot not found."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = QualityFormCreateSerializer(
+            data=request.data,
+            context={"tenant": membership.tenant, "lot": lot, "user": request.user},
+        )
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        form = serializer.save()
+        log_audit_event(
+            tenant=membership.tenant,
+            actor=request.user,
+            action="form.create",
+            metadata={"form_id": form.id, "form_type": form.form_type, "lot_id": lot.id},
+        )
+        return Response(QualityFormSerializer(form).data, status=status.HTTP_201_CREATED)
+
+
+class FormDetailView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, lot_id, form_id):
+        membership = get_request_membership(request)
+        if not membership:
+            return Response({"detail": "Membership not found."}, status=status.HTTP_401_UNAUTHORIZED)
+        lot = _get_lot_or_404(lot_id, membership.tenant)
+        if not lot:
+            return Response({"detail": "Lot not found."}, status=status.HTTP_404_NOT_FOUND)
+        form = _get_form_or_404(form_id, lot, membership.tenant)
+        if not form:
+            return Response({"detail": "Form not found."}, status=status.HTTP_404_NOT_FOUND)
+        return Response(QualityFormSerializer(form).data)
+
+
+class FormStatusView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, lot_id, form_id):
+        membership = get_request_membership(request)
+        if not membership:
+            return Response({"detail": "Membership not found."}, status=status.HTTP_401_UNAUTHORIZED)
+        lot = _get_lot_or_404(lot_id, membership.tenant)
+        if not lot:
+            return Response({"detail": "Lot not found."}, status=status.HTTP_404_NOT_FOUND)
+        form = _get_form_or_404(form_id, lot, membership.tenant)
+        if not form:
+            return Response({"detail": "Form not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        new_status = request.data.get("status", "")
+        if new_status in {"approved", "rejected"} and not form_can_approve(membership):
+            return Response({"detail": "You do not have permission to approve or reject forms."}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = QualityFormStatusSerializer(data=request.data, context={"form": form})
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        form.status = serializer.validated_data["status"]
+        if form.status == "submitted":
+            form.submitted_at = tz.now()
+        form.save(update_fields=["status", "submitted_at", "updated_at"])
+
+        log_audit_event(
+            tenant=membership.tenant,
+            actor=request.user,
+            action=f"form.{form.status}",
+            metadata={"form_id": form.id, "lot_id": lot.id},
+        )
+        return Response(QualityFormSerializer(form).data)

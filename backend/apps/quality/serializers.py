@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Lot
+from .models import Lot, QualityForm, FormField
 
 ALLOWED_TRANSITIONS = {
     "pending": {"in_process", "rejected"},
@@ -65,5 +65,76 @@ class LotStatusSerializer(serializers.Serializer):
         if lot and value not in ALLOWED_TRANSITIONS.get(lot.status, set()):
             raise serializers.ValidationError(
                 f"Cannot transition from '{lot.status}' to '{value}'."
+            )
+        return value
+
+
+FORM_STATUS_TRANSITIONS = {
+    "draft": {"submitted"},
+    "submitted": {"approved", "rejected"},
+    "approved": set(),
+    "rejected": set(),
+}
+
+
+class FormFieldSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FormField
+        fields = ["id", "field_name", "field_type", "value", "unit", "ordering"]
+
+
+class FormFieldInputSerializer(serializers.Serializer):
+    field_name = serializers.CharField(max_length=100)
+    field_type = serializers.ChoiceField(choices=FormField.FieldType.choices, default="text")
+    value = serializers.CharField(allow_blank=True, default="")
+    unit = serializers.CharField(max_length=30, allow_blank=True, default="")
+    ordering = serializers.IntegerField(default=0, required=False)
+
+
+class QualityFormSerializer(serializers.ModelSerializer):
+    fields = FormFieldSerializer(many=True, read_only=True)
+    filled_by_username = serializers.SerializerMethodField()
+
+    class Meta:
+        model = QualityForm
+        fields = [
+            "id", "form_type", "status", "filled_by_username",
+            "submitted_at", "notes", "fields", "created_at", "updated_at",
+        ]
+
+    def get_filled_by_username(self, obj):
+        return obj.filled_by.username if obj.filled_by else None
+
+
+class QualityFormCreateSerializer(serializers.Serializer):
+    form_type = serializers.ChoiceField(choices=QualityForm.FormType.choices)
+    notes = serializers.CharField(required=False, allow_blank=True, default="")
+    fields = FormFieldInputSerializer(many=True, required=False, default=list)
+
+    def create(self, validated_data):
+        tenant = self.context["tenant"]
+        lot = self.context["lot"]
+        user = self.context["user"]
+        fields_data = validated_data.pop("fields", [])
+        form = QualityForm.objects.create(
+            tenant=tenant,
+            lot=lot,
+            filled_by=user,
+            **validated_data,
+        )
+        for i, field_data in enumerate(fields_data):
+            field_data.setdefault("ordering", i)
+            FormField.objects.create(quality_form=form, **field_data)
+        return form
+
+
+class QualityFormStatusSerializer(serializers.Serializer):
+    status = serializers.ChoiceField(choices=QualityForm.Status.choices)
+
+    def validate_status(self, value):
+        form = self.context.get("form")
+        if form and value not in FORM_STATUS_TRANSITIONS.get(form.status, set()):
+            raise serializers.ValidationError(
+                f"Cannot transition from '{form.status}' to '{value}'."
             )
         return value
