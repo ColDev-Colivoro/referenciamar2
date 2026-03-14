@@ -9,10 +9,10 @@
 
 ## Phase 2: Backend Implementation
 
-- [ ] 2.1 `backend/apps/authentication/views.py` — Add `from rest_framework.authtoken.models import Token` import
-- [ ] 2.2 `backend/apps/authentication/views.py` — In `LoginView.post()`, after `login(request, user)`: add `token, _ = Token.objects.get_or_create(user=user)`, then include `"accessToken": token.key` in `build_session_payload()` return (wrap response as `payload = build_session_payload(membership); payload["accessToken"] = token.key; return Response(payload)`)
-- [ ] 2.3 `backend/apps/authentication/views.py` — In `LogoutView.post()`, inside the `if request.user.is_authenticated:` block (before `logout(request)`): add `Token.objects.filter(user=request.user).delete()`
-- [ ] 2.4 `backend/apps/authentication/views.py` — Update `LogoutView.post()` permission: add `permission_classes = [permissions.IsAuthenticated]` so unauthenticated logout returns 401 (not 204)
+- [x] 2.1 `backend/apps/authentication/views.py` — Add `from rest_framework.authtoken.models import Token` import
+- [x] 2.2 `backend/apps/authentication/views.py` — In `LoginView.post()`, after `login(request, user)`: add `token, _ = Token.objects.get_or_create(user=user)`, then include `"accessToken": token.key` in `build_session_payload()` return (wrap response as `payload = build_session_payload(membership); payload["accessToken"] = token.key; return Response(payload)`)
+- [x] 2.3 `backend/apps/authentication/views.py` — In `LogoutView.post()`, inside the `if request.user.is_authenticated:` block (before `logout(request)`): add `Token.objects.filter(user=request.user).delete()`
+- [x] 2.4 `backend/apps/authentication/views.py` — Update `LogoutView.post()` permission: add `permission_classes = [permissions.IsAuthenticated]` so unauthenticated logout returns 401 (not 204)
 
 ## Phase 3: Frontend Implementation
 

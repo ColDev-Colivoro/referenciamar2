@@ -1,5 +1,6 @@
 from django.contrib.auth import login, logout
 from rest_framework import permissions, status
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -57,6 +58,8 @@ class LoginView(APIView):
         request.session["tenant_id"] = membership.tenant_id
         request.session["tenant_slug"] = membership.tenant.slug
 
+        token, _ = Token.objects.get_or_create(user=user)
+
         log_audit_event(
             action="auth.login_success",
             tenant=membership.tenant,
@@ -64,7 +67,9 @@ class LoginView(APIView):
             metadata={"role": membership.role.code, "session_mode": "hybrid"},
         )
 
-        return Response(build_session_payload(membership))
+        payload = build_session_payload(membership)
+        payload["accessToken"] = token.key
+        return Response(payload)
 
 
 class SessionView(APIView):
@@ -86,17 +91,19 @@ class SessionView(APIView):
 
 
 class LogoutView(APIView):
-    def post(self, request):
-        if request.user.is_authenticated:
-            tenant_id = request.session.get("tenant_id")
-            tenant = TenantRegistry.objects.filter(id=tenant_id).first() if tenant_id else None
-            log_audit_event(
-                action="auth.logout",
-                tenant=tenant,
-                actor=request.user,
-                metadata={},
-            )
+    permission_classes = [permissions.IsAuthenticated]
 
+    def post(self, request):
+        tenant_id = request.session.get("tenant_id")
+        tenant = TenantRegistry.objects.filter(id=tenant_id).first() if tenant_id else None
+        log_audit_event(
+            action="auth.logout",
+            tenant=tenant,
+            actor=request.user,
+            metadata={},
+        )
+
+        Token.objects.filter(user=request.user).delete()
         logout(request)
         request.session.flush()
 
