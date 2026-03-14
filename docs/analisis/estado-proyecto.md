@@ -39,8 +39,9 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | Frontend Auth Context | ⏳ Pendiente | 0% |
 | Users/Roles API | ✅ Implementado | 100% |
 | **Quality / Lots** | ✅ Vertical slice completo | **40%** |
+| **Quality / Forms** | ✅ Vertical slice completo | **70%** |
 | **Audit** | ✅ Módulo base operacional | **70%** |
-| Testing | 🟡 55 tests (auth+users+lots+audit) | 70% |
+| Testing | 🟡 65 tests (auth+users+lots+audit+forms) | 75% |
 | Deployment | ⏳ Pendiente | 0% |
 
 ### Audit — detalle
@@ -66,6 +67,20 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | `LotStatusBadge` component | ✅ |
 | `LotForm` dialog component | ✅ |
 | Backend tests (13/13 passing) | ✅ |
+
+### Quality / Forms — detalle
+
+| Componente | Estado |
+|------------|--------|
+| `QualityForm` + `FormField` models + migration | ✅ |
+| API: list, create, detail, status change | ✅ |
+| Frontend hook `useForms(lotId)` | ✅ |
+| Frontend page `/dashboard/lots/[id]/forms/` | ✅ |
+| `FormStatusBadge` component | ✅ |
+| Backend tests (10/10 passing) | ✅ |
+| Audit: form.create, form.submitted, form.approved, form.rejected | ✅ |
+| Total tests: 65 passing (55 previos + 10 forms) | ✅ |
+| Pendiente: export PDF, templates dinámicos | ⏳ |
 
 ---
 

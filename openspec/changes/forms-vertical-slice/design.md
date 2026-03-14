@@ -74,19 +74,19 @@ ALLOWED_TRANSITIONS = {
 
 ## File Changes
 
-| File | Type | Description |
-|------|------|-------------|
-| `backend/apps/quality/models.py` | MODIFY | Add `QualityForm`, `FormField` |
-| `backend/apps/quality/migrations/0003_add_quality_form.py` | CREATE | Migration for new models |
-| `backend/apps/quality/serializers.py` | MODIFY | Add `FormFieldSerializer`, `QualityFormSerializer`, `QualityFormCreateSerializer`, `QualityFormStatusSerializer` |
-| `backend/apps/quality/views.py` | MODIFY | Add `FormListCreateView`, `FormDetailView`, `FormStatusView`; helper `_get_form_or_404` |
-| `backend/apps/quality/urls.py` | MODIFY | Include form routes under `<int:lot_id>/forms/` |
-| `backend/apps/quality/tests/test_forms.py` | CREATE | Backend unit + integration tests |
-| `frontend/lib/forms/types.ts` | CREATE | TypeScript types |
-| `frontend/lib/forms/api.ts` | CREATE | API client functions |
-| `frontend/hooks/use-forms.ts` | CREATE | `useForms(lotId)` React hook |
-| `frontend/components/forms/form-status-badge.tsx` | CREATE | Status badge component |
-| `frontend/app/dashboard/lots/[id]/forms/page.tsx` | CREATE | Forms per lot page |
+| File | Type | Description | Status |
+|------|------|-------------|--------|
+| `backend/apps/quality/models.py` | MODIFY | Add `QualityForm`, `FormField` | ✅ Implemented |
+| `backend/apps/quality/migrations/0003_add_quality_form.py` | CREATE | Migration for new models | ✅ Implemented |
+| `backend/apps/quality/serializers.py` | MODIFY | Add `FormFieldSerializer`, `QualityFormSerializer`, `QualityFormCreateSerializer`, `QualityFormStatusSerializer` | ✅ Implemented |
+| `backend/apps/quality/views.py` | MODIFY | Add `FormListCreateView`, `FormDetailView`, `FormStatusView`; helper `_get_form_or_404` | ✅ Implemented |
+| `backend/apps/quality/urls.py` | MODIFY | Include form routes under `<int:lot_id>/forms/` | ✅ Implemented |
+| `backend/apps/quality/tests/test_forms.py` | CREATE | Backend unit + integration tests | ✅ Implemented |
+| `frontend/lib/forms/types.ts` | CREATE | TypeScript types | ✅ Implemented |
+| `frontend/lib/forms/api.ts` | CREATE | API client functions | ✅ Implemented |
+| `frontend/hooks/use-forms.ts` | CREATE | `useForms(lotId)` React hook | ✅ Implemented |
+| `frontend/components/forms/form-status-badge.tsx` | CREATE | Status badge component | ✅ Implemented |
+| `frontend/app/dashboard/lots/[id]/forms/page.tsx` | CREATE | Forms per lot page | ✅ Implemented |
 
 ---
 
