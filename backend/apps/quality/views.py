@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
+from apps.audit.services import log_audit_event
 from apps.users.services import get_request_membership
 from .models import Lot
 from .serializers import LotSerializer, LotCreateSerializer, LotStatusSerializer
@@ -41,6 +42,12 @@ class LotListCreateView(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         lot = serializer.save()
+        log_audit_event(
+            action="lots.create",
+            tenant=membership.tenant,
+            actor=request.user,
+            metadata={"resource_type": "lot", "resource_id": lot.id, "code": lot.code, "species": lot.species},
+        )
         return Response(LotSerializer(lot).data, status=status.HTTP_201_CREATED)
 
 
@@ -75,6 +82,12 @@ class LotDetailView(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         lot = serializer.save()
+        log_audit_event(
+            action="lots.update",
+            tenant=membership.tenant,
+            actor=request.user,
+            metadata={"resource_type": "lot", "resource_id": lot.id, "updated_fields": list(request.data.keys())},
+        )
         return Response(LotSerializer(lot).data)
 
 
@@ -96,4 +109,10 @@ class LotStatusView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         lot.status = serializer.validated_data["status"]
         lot.save(update_fields=["status", "updated_at"])
+        log_audit_event(
+            action="lots.change_status",
+            tenant=membership.tenant,
+            actor=request.user,
+            metadata={"resource_type": "lot", "resource_id": lot.id, "new_status": lot.status},
+        )
         return Response(LotSerializer(lot).data)
