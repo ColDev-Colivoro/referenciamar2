@@ -1,0 +1,6 @@
+from .base import *  # noqa: F403
+
+DEBUG = True
+ALLOWED_HOSTS = ["*"]
+TENANT_AUTO_REGISTER_DATABASES = True
+TENANT_ENFORCE_DB_READY = False
