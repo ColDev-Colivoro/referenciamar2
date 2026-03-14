@@ -1,4 +1,5 @@
 import { buildApiUrl } from "@/lib/config/env"
+import { getToken } from "@/lib/auth/token"
 
 export class ApiError extends Error {
   status: number
@@ -13,11 +14,15 @@ export class ApiError extends Error {
 }
 
 export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = getToken()
+  const authHeader = token ? { Authorization: `Token ${token}` } : {}
+
   const response = await fetch(buildApiUrl(path), {
     ...init,
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      ...authHeader,
       ...(init?.headers ?? {}),
     },
   })

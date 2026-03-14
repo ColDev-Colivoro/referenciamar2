@@ -13,7 +13,7 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  accessToken?: string
+  accessToken: string
   refreshToken?: string
   sessionMode: "cookie" | "hybrid"
   user: {

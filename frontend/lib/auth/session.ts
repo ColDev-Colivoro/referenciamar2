@@ -1,4 +1,5 @@
 import { apiRequest } from "@/lib/api/client"
+import { setToken } from "@/lib/auth/token"
 import type { LoginRequest, LoginResponse, UserRole } from "@/lib/auth/types"
 
 const roleRouteMap: Record<UserRole, string> = {
@@ -15,8 +16,10 @@ export function getRouteForRole(role: UserRole) {
 }
 
 export async function login(input: LoginRequest) {
-  return apiRequest<LoginResponse>("/api/v1/auth/login/", {
+  const response = await apiRequest<LoginResponse>("/api/v1/auth/login/", {
     method: "POST",
     body: JSON.stringify(input),
   })
+  setToken(response.accessToken)
+  return response
 }

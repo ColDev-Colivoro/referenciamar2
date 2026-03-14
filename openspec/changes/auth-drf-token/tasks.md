@@ -16,10 +16,10 @@
 
 ## Phase 3: Frontend Implementation
 
-- [ ] 3.1 `frontend/lib/api/client.ts` — Import `getToken` from `@/lib/auth/token`; build `authHeader` from token if present; inject `Authorization: \`Token ${token}\`` into the `headers` spread (before `init?.headers` so callers can override)
-- [ ] 3.2 `frontend/lib/auth/types.ts` — Change `accessToken?: string` to `accessToken: string` (make required on `LoginResponse`)
-- [ ] 3.3 `frontend/lib/auth/session.ts` — Import `setToken` from `@/lib/auth/token`; after `apiRequest<LoginResponse>` returns in `login()`, call `setToken(response.accessToken)` before returning
-- [ ] 3.4 `frontend/lib/auth/logout.ts` — Import `clearToken` from `@/lib/auth/token`; after `apiRequest("/api/v1/auth/logout/", ...)` resolves successfully, call `clearToken()`
+- [x] 3.1 `frontend/lib/api/client.ts` — Import `getToken` from `@/lib/auth/token`; build `authHeader` from token if present; inject `Authorization: \`Token ${token}\`` into the `headers` spread (before `init?.headers` so callers can override)
+- [x] 3.2 `frontend/lib/auth/types.ts` — Change `accessToken?: string` to `accessToken: string` (make required on `LoginResponse`)
+- [x] 3.3 `frontend/lib/auth/session.ts` — Import `setToken` from `@/lib/auth/token`; after `apiRequest<LoginResponse>` returns in `login()`, call `setToken(response.accessToken)` before returning
+- [x] 3.4 `frontend/lib/auth/logout.ts` — Import `clearToken` from `@/lib/auth/token`; after `apiRequest("/api/v1/auth/logout/", ...)` resolves successfully, call `clearToken()`
 
 ## Phase 4: Testing
 
