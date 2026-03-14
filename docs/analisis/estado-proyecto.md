@@ -42,7 +42,8 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | **Quality / Forms** | ✅ Vertical slice completo | **70%** |
 | **Audit** | ✅ Módulo base operacional | **70%** |
 | **Reports** | ✅ Módulo base operacional | **50%** |
-| Testing | 🟡 71 tests (auth+users+lots+audit+forms+reports) | 75% |
+| **Billing** | ✅ Módulo base operacional | **100%** |
+| Testing | 🟡 79 tests (auth+users+lots+audit+forms+reports+billing) | 80% |
 | Deployment | ⏳ Pendiente | 0% |
 
 ### Audit — detalle
@@ -82,6 +83,20 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | Audit: form.create, form.submitted, form.approved, form.rejected | ✅ |
 | Total tests: 71 passing (65 previos + 6 reports) | ✅ |
 | Pendiente: export PDF, templates dinámicos | ⏳ |
+
+### Billing — detalle
+
+| Componente | Estado |
+|------------|--------|
+| `Plan` + `TenantSubscription` models + migration | ✅ |
+| `seed_plans` management command | ✅ |
+| GET /api/v1/billing/plans/ (public) | ✅ |
+| GET /api/v1/billing/subscription/ (tenant_admin) | ✅ |
+| Frontend `useSubscription()` hook | ✅ |
+| Frontend billing page `/dashboard/billing/` | ✅ |
+| `PlanBadge` component | ✅ |
+| Tests: 8/8 passing | ✅ |
+| Total tests: 71 (previos) + 8 = **79 passing** | ✅ |
 
 ### Reports — detalle
 

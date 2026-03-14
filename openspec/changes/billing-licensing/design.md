@@ -93,23 +93,23 @@ is safe and will apply any definition changes.
 
 | File | Change | Status |
 |---|---|---|
-| `backend/apps/core/models.py` | Add `Plan` + `TenantSubscription` models | ⬜ TODO |
-| `backend/apps/core/migrations/00XX_add_plan_tenantsubscription.py` | New migration | ⬜ TODO |
-| `backend/apps/core/management/commands/seed_plans.py` | New idempotent seed command | ⬜ TODO |
-| `backend/apps/core/admin.py` | Register `Plan`, `TenantSubscription` | ⬜ TODO |
-| `backend/apps/billing/__init__.py` | New thin app | ⬜ TODO |
-| `backend/apps/billing/apps.py` | `BillingConfig` | ⬜ TODO |
-| `backend/apps/billing/serializers.py` | `PlanSerializer`, `TenantSubscriptionSerializer` | ⬜ TODO |
-| `backend/apps/billing/views.py` | `PlanListView`, `SubscriptionView` | ⬜ TODO |
-| `backend/apps/billing/urls.py` | URL patterns for billing | ⬜ TODO |
-| `backend/config/settings.py` | Add `"apps.billing"` to `INSTALLED_APPS` | ⬜ TODO |
-| `backend/config/urls.py` | `include("apps.billing.urls")` at `api/v1/billing/` | ⬜ TODO |
-| `frontend/lib/billing/types.ts` | TypeScript interfaces | ⬜ TODO |
-| `frontend/lib/billing/api.ts` | `listPlans()`, `getSubscription()` | ⬜ TODO |
-| `frontend/hooks/use-subscription.ts` | `useSubscription()` hook | ⬜ TODO |
-| `frontend/components/billing/plan-badge.tsx` | `PlanBadge` component | ⬜ TODO |
-| `frontend/app/dashboard/billing/page.tsx` | Read-only billing page | ⬜ TODO |
-| `backend/tests/test_billing.py` | 8 backend tests | ⬜ TODO |
+| `backend/apps/core/models.py` | Add `Plan` + `TenantSubscription` models | ✅ Done |
+| `backend/apps/core/migrations/00XX_add_plan_tenantsubscription.py` | New migration | ✅ Done |
+| `backend/apps/core/management/commands/seed_plans.py` | New idempotent seed command | ✅ Done |
+| `backend/apps/core/admin.py` | Register `Plan`, `TenantSubscription` | ✅ Done |
+| `backend/apps/billing/__init__.py` | New thin app | ✅ Done |
+| `backend/apps/billing/apps.py` | `BillingConfig` | ✅ Done |
+| `backend/apps/billing/serializers.py` | `PlanSerializer`, `TenantSubscriptionSerializer` | ✅ Done |
+| `backend/apps/billing/views.py` | `PlanListView`, `SubscriptionView` | ✅ Done |
+| `backend/apps/billing/urls.py` | URL patterns for billing | ✅ Done |
+| `backend/config/settings.py` | Add `"apps.billing"` to `INSTALLED_APPS` | ✅ Done |
+| `backend/config/urls.py` | `include("apps.billing.urls")` at `api/v1/billing/` | ✅ Done |
+| `frontend/lib/billing/types.ts` | TypeScript interfaces | ✅ Done |
+| `frontend/lib/billing/api.ts` | `listPlans()`, `getSubscription()` | ✅ Done |
+| `frontend/hooks/use-subscription.ts` | `useSubscription()` hook | ✅ Done |
+| `frontend/components/billing/plan-badge.tsx` | `PlanBadge` component | ✅ Done |
+| `frontend/app/dashboard/billing/page.tsx` | Read-only billing page | ✅ Done |
+| `backend/tests/test_billing.py` | 8 backend tests | ✅ Done |
 
 ---
 
