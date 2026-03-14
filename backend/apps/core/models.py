@@ -67,3 +67,56 @@ class TenantRegistry(models.Model):
             }
 
         return database_settings
+
+
+class Plan(models.Model):
+    class Code(models.TextChoices):
+        STARTER = "starter", "Starter"
+        PROFESSIONAL = "professional", "Professional"
+        ENTERPRISE = "enterprise", "Enterprise"
+
+    code = models.CharField(max_length=30, choices=Code.choices, unique=True)
+    name = models.CharField(max_length=100)
+    max_users = models.PositiveIntegerField(default=5)
+    max_lots_per_month = models.PositiveIntegerField(default=50)
+    features = models.JSONField(default=dict)
+    price_monthly = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["price_monthly"]
+
+    def __str__(self):
+        return f"{self.name} ({self.code})"
+
+
+class TenantSubscription(models.Model):
+    class Status(models.TextChoices):
+        ACTIVE = "active", "Activo"
+        TRIAL = "trial", "Prueba"
+        EXPIRED = "expired", "Expirado"
+        SUSPENDED = "suspended", "Suspendido"
+
+    tenant = models.OneToOneField(
+        TenantRegistry,
+        on_delete=models.CASCADE,
+        related_name="subscription",
+    )
+    plan = models.ForeignKey(
+        Plan,
+        on_delete=models.PROTECT,
+        related_name="subscriptions",
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.TRIAL,
+    )
+    trial_ends_at = models.DateTimeField(null=True, blank=True)
+    expires_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.tenant} → {self.plan.name} ({self.status})"
