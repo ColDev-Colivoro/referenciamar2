@@ -125,7 +125,7 @@ export function SystemConfiguration() {
               <div className="relative">
                 <Mail className="h-4 w-4 absolute left-3 top-3 text-gray-400" />
                 <Input
-                  placeholder="soporte@mar2control.com"
+                  placeholder="soporte@coldevconac.com"
                   className="h-9 text-sm pl-10 border-blue-300 focus:border-blue-500"
                 />
               </div>

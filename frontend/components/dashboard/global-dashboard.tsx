@@ -16,7 +16,7 @@ export function GlobalDashboard() {
         </CardTitle>
         <Badge className="text-xs font-medium bg-indigo-100 text-indigo-700 w-fit">
           <Shield className="h-3 w-3 mr-1" />
-          ColDev-Mar2Control
+          ColdevConAC
         </Badge>
       </CardHeader>
       <CardContent className="space-y-6">

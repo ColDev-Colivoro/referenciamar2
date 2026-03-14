@@ -47,7 +47,7 @@ export function MainLayout({ children, userRole, userName, companyName }: MainLa
                 <Waves className="h-9 w-9 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-extrabold tracking-tight">Mar2Control</h1>
+                <h1 className="text-3xl font-extrabold tracking-tight">ColdevConAC</h1>
                 <p className="text-blue-100 text-sm opacity-90">Gestión de Calidad Pesquera</p>
               </div>
             </div>

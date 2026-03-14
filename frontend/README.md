@@ -1,8 +1,8 @@
 # ColdevConAC — Sistema de Control de Calidad Pesquera
 
-![Mar2Control Logo](public/placeholder-logo.png)
+![ColdevConAC Logo](public/placeholder-logo.png)
 
-Mar2Control es una plataforma web integral diseñada para el control de calidad en la industria pesquera. El sistema permite gestionar formularios, lotes, usuarios y reportes de manera eficiente, con diferentes niveles de acceso según el rol del usuario.
+ColdevConAC es una plataforma web integral diseñada para el control de calidad en la industria pesquera.El sistema permite gestionar formularios, lotes, usuarios y reportes de manera eficiente, con diferentes niveles de acceso según el rol del usuario.
 
 ## 🚀 Características Principales
 
@@ -47,7 +47,7 @@ Mar2Control es una plataforma web integral diseñada para el control de calidad 
 ## 📁 Estructura del Proyecto
 
 ```
-referenciamar2/
+coldevconac/
 ├── app/                          # Páginas de Next.js (App Router)
 │   ├── admin/                    # Panel de administración
 │   ├── dashboard/                # Dashboards por rol
@@ -79,7 +79,7 @@ referenciamar2/
 ### 1. Clonar el Repositorio
 ```bash
 git clone <url-del-repositorio>
-cd referenciamar2
+cd coldevconac
 ```
 
 ### 2. Instalar Dependencias
@@ -95,7 +95,7 @@ npm install
 Crear un archivo `.env.local` en la raíz del proyecto:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000/api
-NEXT_PUBLIC_APP_NAME=Mar2Control
+NEXT_PUBLIC_APP_NAME=ColdevConAC
 ```
 
 ### 4. Iniciar el Servidor de Desarrollo
@@ -237,10 +237,10 @@ Los componentes base están en `components/ui/` y pueden ser personalizados seg�
 
 ## 📱 Aplicación Móvil
 
-El proyecto también incluye una aplicación móvil desarrollada con Expo React Native en el directorio `mar2control/`:
+El proyecto también incluye una aplicación móvil desarrollada con Expo React Native en el directorio `coldevconac-mobile/`:
 
 ```bash
-cd ../mar2control
+cd ../coldevconac-mobile
 npm install
 npx expo start
 ```
@@ -280,5 +280,5 @@ Para soporte técnico o consultas:
 
 ---
 
-**Desarrollado por ColDev - Mar2Control Team** 🐟
+**Desarrollado por ColDev - ColdevConAC Team** 🐟
 

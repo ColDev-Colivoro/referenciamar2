@@ -32,7 +32,7 @@ Esta documentación es una base de trabajo construida a partir de:
 
 - `AGENTS.md`
 - artefactos SDD del cambio `fundacion-producto-cdc`
-- análisis del frontend actual de `referenciamar2`
+- análisis del frontend actual de `coldevconac`
 - referencia documental de proceso usada de forma **anonimizada**
 
 ## Próximo paso

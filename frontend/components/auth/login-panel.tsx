@@ -20,7 +20,7 @@ export function LoginPanel() {
           <div className="bg-blue-100 p-3 rounded-full w-16 h-16 mx-auto mb-2">
             <Anchor className="h-10 w-10 text-blue-600" />
           </div>
-          <h3 className="font-semibold text-blue-900">Mar2Control</h3>
+          <h3 className="font-semibold text-blue-900">ColdevConAC</h3>
         </div>
 
         <Input placeholder="Usuario" className="text-xs" />

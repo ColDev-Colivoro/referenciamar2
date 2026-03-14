@@ -48,7 +48,7 @@ export function LoginPage() {
           <div className="bg-gradient-to-br from-blue-500 to-cyan-500 p-5 rounded-full w-24 h-24 mx-auto mb-4 shadow-lg flex items-center justify-center">
             <Waves className="h-14 w-14 text-white" />
           </div>
-          <CardTitle className="text-3xl font-extrabold text-blue-900 tracking-tight">Mar2Control</CardTitle>
+          <CardTitle className="text-3xl font-extrabold text-blue-900 tracking-tight">ColdevConAC</CardTitle>
           <p className="text-base text-gray-600 mt-2">Coldev-CADC · Control de Calidad Pesquera</p>
         </CardHeader>
 
@@ -86,7 +86,7 @@ export function LoginPage() {
                 <SelectValue placeholder="Seleccionar Empresa" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="global">ColDev-Mar2Control (Global)</SelectItem>
+                <SelectItem value="global">ColdevConAC (Global)</SelectItem>
                 <SelectItem value="pesquera-del-sur">Pesquera del Sur</SelectItem>
                 <SelectItem value="mariscos-pacifico">Mariscos Pacífico</SelectItem>
                 <SelectItem value="exportadora-marina">Exportadora Marina</SelectItem>
