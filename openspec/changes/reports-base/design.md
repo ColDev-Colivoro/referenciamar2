@@ -47,24 +47,24 @@ This keeps reporting logic isolated from `apps/quality` and `apps/audit`, follow
 
 ### Backend
 
-| File | Type | Description |
-|------|------|-------------|
-| `backend/apps/reports/__init__.py` | New | Empty — marks directory as Python package |
-| `backend/apps/reports/apps.py` | New | `ReportsConfig(AppConfig)` with `name = "apps.reports"` |
-| `backend/apps/reports/views.py` | New | Four `APIView` subclasses |
-| `backend/apps/reports/urls.py` | New | URL patterns for four endpoints |
-| `backend/config/urls.py` | Modified | `include("apps.reports.urls", namespace="reports")` at `/api/v1/reports/` |
-| `backend/config/settings/base.py` | Modified | Add `"apps.reports"` to `INSTALLED_APPS` |
-| `backend/tests/test_reports.py` | New | 6 test cases |
+| File | Type | Description | Status |
+|------|------|-------------|--------|
+| `backend/apps/reports/__init__.py` | New | Empty — marks directory as Python package | ✅ Implemented |
+| `backend/apps/reports/apps.py` | New | `ReportsConfig(AppConfig)` with `name = "apps.reports"` | ✅ Implemented |
+| `backend/apps/reports/views.py` | New | Four `APIView` subclasses | ✅ Implemented |
+| `backend/apps/reports/urls.py` | New | URL patterns for four endpoints | ✅ Implemented |
+| `backend/config/urls.py` | Modified | `include("apps.reports.urls", namespace="reports")` at `/api/v1/reports/` | ✅ Implemented |
+| `backend/config/settings/base.py` | Modified | Add `"apps.reports"` to `INSTALLED_APPS` | ✅ Implemented |
+| `backend/tests/test_reports.py` | New | 6 test cases | ✅ Implemented |
 
 ### Frontend
 
-| File | Type | Description |
-|------|------|-------------|
-| `frontend/lib/reports/types.ts` | New | TypeScript interfaces |
-| `frontend/lib/reports/api.ts` | New | `getDashboardStats()` fetch function |
-| `frontend/hooks/use-reports.ts` | New | `useReports()` React hook |
-| `frontend/components/dashboard/stats-cards.tsx` | New | Presentational 4-card component |
+| File | Type | Description | Status |
+|------|------|-------------|--------|
+| `frontend/lib/reports/types.ts` | New | TypeScript interfaces | ✅ Implemented |
+| `frontend/lib/reports/api.ts` | New | `getDashboardStats()` fetch function | ✅ Implemented |
+| `frontend/hooks/use-reports.ts` | New | `useReports()` React hook | ✅ Implemented |
+| `frontend/components/dashboard/stats-cards.tsx` | New | Presentational 4-card component | ✅ Implemented |
 
 ---
 

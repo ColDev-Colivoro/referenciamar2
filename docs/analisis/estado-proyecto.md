@@ -41,7 +41,8 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | **Quality / Lots** | ✅ Vertical slice completo | **40%** |
 | **Quality / Forms** | ✅ Vertical slice completo | **70%** |
 | **Audit** | ✅ Módulo base operacional | **70%** |
-| Testing | 🟡 65 tests (auth+users+lots+audit+forms) | 75% |
+| **Reports** | ✅ Módulo base operacional | **50%** |
+| Testing | 🟡 71 tests (auth+users+lots+audit+forms+reports) | 75% |
 | Deployment | ⏳ Pendiente | 0% |
 
 ### Audit — detalle
@@ -79,8 +80,21 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | `FormStatusBadge` component | ✅ |
 | Backend tests (10/10 passing) | ✅ |
 | Audit: form.create, form.submitted, form.approved, form.rejected | ✅ |
-| Total tests: 65 passing (55 previos + 10 forms) | ✅ |
+| Total tests: 71 passing (65 previos + 6 reports) | ✅ |
 | Pendiente: export PDF, templates dinámicos | ⏳ |
+
+### Reports — detalle
+
+| Componente | Estado |
+|------------|--------|
+| GET /api/v1/reports/dashboard/ | ✅ |
+| GET /api/v1/reports/lots/summary/ | ✅ |
+| GET /api/v1/reports/forms/summary/ | ✅ |
+| GET /api/v1/reports/activity/ | ✅ |
+| Frontend useReports() hook | ✅ |
+| Frontend StatsCards component | ✅ |
+| Tests: 6/6 passing | ✅ |
+| Pendiente: CSV export, charts, historical trends | ⏳ |
 
 ---
 
