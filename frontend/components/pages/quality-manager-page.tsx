@@ -96,7 +96,7 @@ export function QualityManagerPage() {
 
         {/* Gestión de Lotes */}
         <div className="col-span-1">
-          <LotManagement lots={lots} />
+          <LotManagement />
         </div>
 
         {/* Desglose de Calidad */}
