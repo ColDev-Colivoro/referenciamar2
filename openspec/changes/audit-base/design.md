@@ -136,18 +136,18 @@ LotListCreateView.post()
 
 ## File Changes
 
-| File | Action | Description |
-|------|--------|-------------|
-| `backend/apps/audit/serializers.py` | Create | `AuditEventSerializer` — campos read-only del modelo |
-| `backend/apps/audit/views.py` | Create | `AuditListView` con paginación + filtros inline |
-| `backend/apps/audit/urls.py` | Create | `urlpatterns` con ruta raíz a `AuditListView` |
-| `backend/config/urls.py` | Modify | Añadir `path("api/v1/audit/", include("apps.audit.urls"))` |
-| `backend/apps/quality/views.py` | Modify | Importar `log_audit_event`; llamarlo en `post()`, `patch()` (LotDetailView), `patch()` (LotStatusView) |
-| `backend/tests/test_audit.py` | Create | 10–12 tests pytest: list, permisos, filtros, paginación, cross-tenant |
-| `frontend/lib/audit/types.ts` | Create | Interfaces `AuditEvent` y `AuditFilters` |
-| `frontend/lib/audit/api.ts` | Create | `listAuditEvents(params)` → `apiRequest` a `/api/v1/audit/` |
-| `frontend/hooks/use-audit.ts` | Create | `useAudit(filters?)` hook con `useState + useCallback + useEffect + useMemo` |
-| `frontend/app/dashboard/audit/page.tsx` | Create | Página read-only con `<DataTable>` shadcn/ui + guard de rol |
+| File | Action | Description | Status |
+|------|--------|-------------|--------|
+| `backend/apps/audit/serializers.py` | Create | `AuditEventSerializer` — campos read-only del modelo | ✅ Implemented |
+| `backend/apps/audit/views.py` | Create | `AuditListView` con paginación + filtros inline | ✅ Implemented |
+| `backend/apps/audit/urls.py` | Create | `urlpatterns` con ruta raíz a `AuditListView` | ✅ Implemented |
+| `backend/config/urls.py` | Modify | Añadir `path("api/v1/audit/", include("apps.audit.urls"))` | ✅ Implemented |
+| `backend/apps/quality/views.py` | Modify | Importar `log_audit_event`; llamarlo en `post()`, `patch()` (LotDetailView), `patch()` (LotStatusView) | ✅ Implemented |
+| `backend/tests/test_audit.py` | Create | 10–12 tests pytest: list, permisos, filtros, paginación, cross-tenant | ✅ Implemented |
+| `frontend/lib/audit/types.ts` | Create | Interfaces `AuditEvent` y `AuditFilters` | ✅ Implemented |
+| `frontend/lib/audit/api.ts` | Create | `listAuditEvents(params)` → `apiRequest` a `/api/v1/audit/` | ✅ Implemented |
+| `frontend/hooks/use-audit.ts` | Create | `useAudit(filters?)` hook con `useState + useCallback + useEffect + useMemo` | ✅ Implemented |
+| `frontend/app/dashboard/audit/page.tsx` | Create | Página read-only con `<DataTable>` shadcn/ui + guard de rol | ✅ Implemented |
 
 ## Interfaces / Contracts
 
@@ -290,5 +290,8 @@ No migration required. El modelo `AuditEvent` y su migración `0001_initial` ya 
 
 ## Open Questions
 
-- [ ] ¿Debe `AuditListView` ser accesible también para `global_admin` de un tenant diferente (superadmin cross-tenant)? Por ahora se filtra siempre por `membership.tenant`, asumiendo que cada admin solo ve su propio tenant.
-- [ ] ¿El campo `actor_email` es suficiente o se necesita `actor_username` también en el serializer? El modelo tiene FK a `User` — se puede añadir sin migración.
+- [x] ¿Debe `AuditListView` ser accesible también para `global_admin` de un tenant diferente (superadmin cross-tenant)?  
+  **Decision**: No. La vista siempre filtra por `membership.tenant` — el `global_admin` consulta únicamente los eventos de su propio tenant (mismo comportamiento que todas las demás vistas). El querying cross-tenant queda diferido a un futuro panel de administración global.
+
+- [x] ¿El campo `actor_email` es suficiente o se necesita `actor_username` también en el serializer?  
+  **Decision**: Se añade `actor_username` a `AuditEventSerializer`. El modelo tiene FK a `User` y el campo se expone sin migración adicional.

@@ -39,8 +39,21 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | Frontend Auth Context | ⏳ Pendiente | 0% |
 | Users/Roles API | ✅ Implementado | 100% |
 | **Quality / Lots** | ✅ Vertical slice completo | **40%** |
-| Testing | 🟡 34 tests (auth+users+lots) | 65% |
+| **Audit** | ✅ Módulo base operacional | **70%** |
+| Testing | 🟡 55 tests (auth+users+lots+audit) | 70% |
 | Deployment | ⏳ Pendiente | 0% |
+
+### Audit — detalle
+
+| Componente | Estado |
+|------------|--------|
+| `AuditEvent` model + migration | ✅ pre-existing |
+| `log_audit_event` helper | ✅ pre-existing |
+| `GET /api/v1/audit/` endpoint | ✅ implemented |
+| Quality retrofit: lots.create / lots.update / lots.change_status logged | ✅ implemented |
+| Frontend audit page `/dashboard/audit/` | ✅ implemented |
+| Tests (8/8 passing) | ✅ |
+| Pendiente: export, retention, alerts | ⏳ |
 
 ### Quality / Lots — detalle
 
