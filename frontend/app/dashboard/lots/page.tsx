@@ -8,6 +8,7 @@ import { useLots } from "@/hooks/use-lots"
 import { LotStatusBadge } from "@/components/lots/lot-status-badge"
 import { LotForm } from "@/components/lots/lot-form"
 import { Button } from "@/components/ui/button"
+import { DashboardNav } from "@/components/layout/dashboard-nav"
 
 // Roles allowed to create / modify lots
 const WRITE_ROLES = new Set(["global_admin", "tenant_admin", "manager", "quality_manager"])
@@ -21,6 +22,7 @@ export default function LotsPage() {
 
   return (
     <div className="p-6 space-y-6">
+      <DashboardNav />
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Gestión de Lotes</h1>

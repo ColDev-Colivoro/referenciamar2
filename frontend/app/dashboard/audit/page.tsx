@@ -6,6 +6,7 @@ import { Loader2, RefreshCw } from "lucide-react"
 import { useSession } from "@/lib/auth/use-session"
 import { useAudit } from "@/hooks/use-audit"
 import { Button } from "@/components/ui/button"
+import { DashboardNav } from "@/components/layout/dashboard-nav"
 
 const AUDIT_ROLES = new Set(["global_admin", "tenant_admin"])
 
@@ -42,6 +43,7 @@ export default function AuditPage() {
 
   return (
     <div className="p-6 space-y-6">
+      <DashboardNav />
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Auditoría</h1>

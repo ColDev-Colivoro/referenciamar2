@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Loader2, Plus, RefreshCw } from "lucide-react"
+import Link from "next/link"
 
 import { useSession } from "@/lib/auth/use-session"
 import { useForms } from "@/hooks/use-forms"
@@ -46,6 +47,10 @@ export default function FormsPage({ params }: FormsPageProps) {
 
   return (
     <div className="p-6 space-y-6">
+      {/* Breadcrumb */}
+      <Link href="/dashboard/lots" className="text-sm text-blue-600 hover:underline">
+        ← Volver a Lotes
+      </Link>
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Formularios del Lote #{params.id}</h1>

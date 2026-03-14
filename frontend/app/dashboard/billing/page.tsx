@@ -7,6 +7,7 @@ import { useSubscription } from "@/hooks/use-subscription"
 import { PlanBadge } from "@/components/billing/plan-badge"
 import { SubscriptionStatusBadge } from "@/components/billing/subscription-status-badge"
 import { Button } from "@/components/ui/button"
+import { DashboardNav } from "@/components/layout/dashboard-nav"
 
 const ALLOWED_ROLES = new Set(["global_admin", "tenant_admin"])
 
@@ -26,6 +27,7 @@ export default function BillingPage() {
 
   return (
     <div className="p-6 space-y-6">
+      <DashboardNav />
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Facturación y Licencia</h1>
