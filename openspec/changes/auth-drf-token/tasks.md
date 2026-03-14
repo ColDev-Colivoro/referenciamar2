@@ -23,14 +23,14 @@
 
 ## Phase 4: Testing
 
-- [ ] 4.1 `backend/tests/test_auth_token.py` — Create file. Write `test_login_returns_token`: `POST /api/v1/auth/login/` with valid credentials → assert 200, response contains `"accessToken"`, token exists in `authtoken_token` table
-- [ ] 4.2 `backend/tests/test_auth_token.py` — Write `test_login_wrong_password_no_token`: `POST /api/v1/auth/login/` with wrong password → assert 400, no token created for that user
-- [ ] 4.3 `backend/tests/test_auth_token.py` — Write `test_login_user_not_in_tenant`: valid user, wrong tenant → assert 403, no token created
-- [ ] 4.4 `backend/tests/test_auth_token.py` — Write `test_logout_deletes_token`: create token for user, `POST /api/v1/auth/logout/` with `Authorization: Token <key>` → assert 204, token no longer in DB
-- [ ] 4.5 `backend/tests/test_auth_token.py` — Write `test_logout_without_auth_returns_401`: `POST /api/v1/auth/logout/` with no credentials → assert 401
-- [ ] 4.6 `backend/tests/test_auth_token.py` — Write `test_protected_endpoint_without_token_returns_401`: `GET /api/v1/auth/me/` with no credentials → assert 401
-- [ ] 4.7 `backend/tests/test_auth_token.py` — Write `test_protected_endpoint_with_valid_token_returns_200`: `GET /api/v1/auth/me/` with `Authorization: Token <key>` → assert 200, response contains `user` and `tenant`
-- [ ] 4.8 `backend/tests/test_auth_token.py` — Write `test_token_from_tenant_a_cannot_access_tenant_b`: create two tenants + two users with memberships; login as user_a (token); request `/me/` with tenant_b context → assert 403 or empty
+- [x] 4.1 `backend/tests/test_auth_token.py` — Create file. Write `test_login_returns_token`: `POST /api/v1/auth/login/` with valid credentials → assert 200, response contains `"accessToken"`, token exists in `authtoken_token` table
+- [x] 4.2 `backend/tests/test_auth_token.py` — Write `test_login_wrong_password_no_token`: `POST /api/v1/auth/login/` with wrong password → assert 400, no token created for that user
+- [x] 4.3 `backend/tests/test_auth_token.py` — Write `test_login_user_not_in_tenant`: valid user, wrong tenant → assert 403, no token created
+- [x] 4.4 `backend/tests/test_auth_token.py` — Write `test_logout_deletes_token`: create token for user, `POST /api/v1/auth/logout/` with `Authorization: Token <key>` → assert 204, token no longer in DB
+- [x] 4.5 `backend/tests/test_auth_token.py` — Write `test_logout_without_auth_returns_401`: `POST /api/v1/auth/logout/` with no credentials → assert 401
+- [x] 4.6 `backend/tests/test_auth_token.py` — Write `test_protected_endpoint_without_token_returns_401`: `GET /api/v1/auth/me/` with no credentials → assert 401
+- [x] 4.7 `backend/tests/test_auth_token.py` — Write `test_protected_endpoint_with_valid_token_returns_200`: `GET /api/v1/auth/me/` with `Authorization: Token <key>` → assert 200, response contains `user` and `tenant`
+- [x] 4.8 `backend/tests/test_auth_token.py` — Write `test_token_from_tenant_a_cannot_access_tenant_b`: create two tenants + two users with memberships; login as user_a (token); request `/me/` with tenant_b context → assert 403 or empty
 
 ## Phase 5: Cleanup & Verification
 
