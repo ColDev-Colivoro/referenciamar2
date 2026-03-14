@@ -38,8 +38,21 @@ Antes se llamaba `coldev-cadc`. Renombrado en esta sesión.
 | Frontend UI | ✅ Componentes | 60% |
 | Frontend Auth Context | ⏳ Pendiente | 0% |
 | Users/Roles API | ✅ Implementado | 100% |
-| Testing | 🟡 21 tests (auth+users) | 60% |
+| **Quality / Lots** | ✅ Vertical slice completo | **40%** |
+| Testing | 🟡 34 tests (auth+users+lots) | 65% |
 | Deployment | ⏳ Pendiente | 0% |
+
+### Quality / Lots — detalle
+
+| Componente | Estado |
+|------------|--------|
+| `Lot` model + migration (`0002_add_lot`) | ✅ |
+| API endpoints: list, create, detail, update, status | ✅ |
+| Frontend hook `useLots()` | ✅ |
+| Frontend page `/dashboard/lots/` | ✅ |
+| `LotStatusBadge` component | ✅ |
+| `LotForm` dialog component | ✅ |
+| Backend tests (13/13 passing) | ✅ |
 
 ---
 

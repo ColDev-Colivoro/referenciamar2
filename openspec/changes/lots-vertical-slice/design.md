@@ -128,22 +128,22 @@ Table renders rows; LotStatusBadge renders per status
 
 ## File Changes
 
-| File | Action | Description |
-|------|--------|-------------|
-| `backend/apps/quality/models.py` | Modify | Replace `QualityPlaceholder` with `Lot` model; all domain fields + `unique_together` + `save()` code gen |
-| `backend/apps/quality/migrations/0002_add_lot.py` | Create | Migration: delete `QualityPlaceholder`, create `Lot` table |
-| `backend/apps/quality/serializers.py` | Create | `LotSerializer`, `LotCreateSerializer`, `LotStatusSerializer` |
-| `backend/apps/quality/views.py` | Create | `LotListCreateView`, `LotDetailView`, `LotStatusView` with tenant+role guards |
-| `backend/apps/quality/permissions.py` | Create | `lot_can_write(membership)` helper; `LOT_WRITE_ROLES` constant |
-| `backend/apps/quality/urls.py` | Create | URL patterns wiring the three views |
-| `backend/config/urls.py` | Modify | Add `path("api/v1/lots/", include("apps.quality.urls"))` |
-| `frontend/lib/lots/types.ts` | Create | `LotStatus`, `Lot`, `CreateLotInput`, `UpdateLotInput` TypeScript types |
-| `frontend/lib/lots/api.ts` | Create | `listLots`, `createLot`, `updateLot`, `changeLotStatus` using `apiRequest` |
-| `frontend/hooks/use-lots.ts` | Create | `useLots()` hook — state + callbacks + memoized return |
-| `frontend/app/dashboard/lots/page.tsx` | Create | Dashboard lots page; renders table + "Nuevo Lote" dialog |
-| `frontend/components/quality-manager/lot-management.tsx` | Modify | Refactor: accept `useLots()` return instead of mock data |
-| `frontend/components/lots/lot-form.tsx` | Create | Shadcn Dialog form for lot creation |
-| `frontend/components/lots/lot-status-badge.tsx` | Create | Status badge with 4 states and semantic colors |
+| File | Action | Description | Status |
+|------|--------|-------------|--------|
+| `backend/apps/quality/models.py` | Modify | Replace `QualityPlaceholder` with `Lot` model; all domain fields + `unique_together` + `save()` code gen | ✅ Implemented |
+| `backend/apps/quality/migrations/0002_add_lot.py` | Create | Migration: delete `QualityPlaceholder`, create `Lot` table | ✅ Implemented |
+| `backend/apps/quality/serializers.py` | Create | `LotSerializer`, `LotCreateSerializer`, `LotStatusSerializer` | ✅ Implemented |
+| `backend/apps/quality/views.py` | Create | `LotListCreateView`, `LotDetailView`, `LotStatusView` with tenant+role guards | ✅ Implemented |
+| `backend/apps/quality/permissions.py` | Create | `lot_can_write(membership)` helper; `LOT_WRITE_ROLES` constant | ✅ Implemented |
+| `backend/apps/quality/urls.py` | Create | URL patterns wiring the three views | ✅ Implemented |
+| `backend/config/urls.py` | Modify | Add `path("api/v1/lots/", include("apps.quality.urls"))` | ✅ Implemented |
+| `frontend/lib/lots/types.ts` | Create | `LotStatus`, `Lot`, `CreateLotInput`, `UpdateLotInput` TypeScript types | ✅ Implemented |
+| `frontend/lib/lots/api.ts` | Create | `listLots`, `createLot`, `updateLot`, `changeLotStatus` using `apiRequest` | ✅ Implemented |
+| `frontend/hooks/use-lots.ts` | Create | `useLots()` hook — state + callbacks + memoized return | ✅ Implemented |
+| `frontend/app/dashboard/lots/page.tsx` | Create | Dashboard lots page; renders table + "Nuevo Lote" dialog | ✅ Implemented |
+| `frontend/components/quality-manager/lot-management.tsx` | Modify | Refactor: accept `useLots()` return instead of mock data | ✅ Implemented |
+| `frontend/components/lots/lot-form.tsx` | Create | Shadcn Dialog form for lot creation | ✅ Implemented |
+| `frontend/components/lots/lot-status-badge.tsx` | Create | Status badge with 4 states and semantic colors | ✅ Implemented |
 
 ---
 
@@ -335,6 +335,6 @@ No feature flags required — the `/api/v1/lots/` URL prefix is new, existing en
 
 ## Open Questions
 
-- [ ] **`TENANT_SCOPED_MODEL_LABELS` env var**: Confirm with the team whether `quality.lot` should be added for per-tenant DB routing, or if shared-DB with FK is the intended architecture for this model. Current design assumes shared-DB (same as `QualityPlaceholder`).
-- [ ] **`AuthContext` readiness**: The frontend hook requires a valid JWT token from `AuthContext`. If `AuthContext` is still incomplete at implementation time, `useLots()` should accept an optional `token` parameter as a fallback (noted as risk in proposal).
-- [ ] **Lot code sequence scope**: The auto-generation `LOT-{year}-{seq:03d}` needs a sequence counter per tenant per year. Clarify whether this can be derived from `Lot.objects.filter(tenant=..., entry_date__year=...).count() + 1` (acceptable for MVP, not race-safe) or requires a dedicated sequence table.
+- [x] **`TENANT_SCOPED_MODEL_LABELS` env var**: ✅ **Resolved** — Confirmed shared-DB (`default`) architecture. `quality.lot` is **not** added to `TENANT_SCOPED_MODEL_LABELS`. `Lot` uses a `tenant` FK on the global DB, identical to the `QualityPlaceholder` it replaced. No custom DB router needed.
+- [x] **`AuthContext` readiness**: ✅ **Resolved** — Used `getToken()` from `lib/auth/token.ts` as an interim solution inside `useLots()`. This avoids a hard dependency on a potentially incomplete `AuthContext` while keeping the hook functional. Migration to `AuthContext` can be done in a follow-up change.
+- [x] **Lot code sequence scope**: ✅ **Resolved** — Accepted `Lot.objects.filter(tenant=self.tenant, entry_date__year=year).count() + 1` as the MVP counter strategy (minor race risk). The `unique_together = ("code", "tenant")` DB constraint acts as the safety net: concurrent inserts that produce the same code will result in an `IntegrityError`, which the view catches and returns as HTTP 400. A dedicated sequence table is deferred to a future change.
