@@ -215,6 +215,13 @@ No se prioriza una demo vistosa; se prioriza una base correcta para la visión d
 - `/sdd-verify` para validación
 - `/sdd-archive` para cierre
 
+## Memoria global (Engram)
+
+- Engram es la memoria global por defecto del ecosistema ColDev.
+- Antes de redescubrir arquitectura o reglas de dominio, consultar memoria en Engram.
+- Al cerrar cambios importantes, guardar decisiones y contexto durable en Engram.
+- En flujos SDD, el store por defecto es `engram`; usar `openspec` solo si se piden artefactos de archivo explícitamente.
+
 ## Regla final
 
 Si una decisión favorece velocidad pero pone en riesgo:
@@ -224,3 +231,16 @@ Si una decisión favorece velocidad pero pone en riesgo:
 - coherencia del dominio
 
 entonces **se prioriza seguridad, separación y mantenibilidad**.
+
+## Mandatory Persistence Policy
+- Start Gate (required before implementation): declare Mode A/B/C and artifact_store.mode (engram/openspec/hybrid/none).
+- Engram-first rule: run an Engram context check before coding; if relevant context exists, use it instead of rediscovery.
+- Default store policy: use engram by default; use openspec only when file artifacts are explicitly required; use hybrid only when both memory and file artifacts are required; use none only for intentionally ephemeral sessions.
+- SDD policy by mode: Mode A can be direct execution plus Engram close note; Mode B requires SDD flow (/sdd-new -> /sdd-continue -> /sdd-apply -> /sdd-verify); Mode C requires full SDD plus review gate (GGA when risk is high).
+- End Gate (required before closure): persist durable decisions (what, why, constraints, next action) to Engram or OpenSpec according to artifact_store.mode.
+- Enforcement: if mode/store declaration or persistence step is missing, stop and complete those steps before proceeding.
+
+## Personal Skills Policy
+- Always check and apply relevant personal skills from 00-core/skills/catalog.md before execution.
+- Core personal skills to keep active: coldev-focus-lock, coldev-weekly-momentum, coldev-sales-clarity, coldev-ux-seo-check, coldev-python-delivery.
+- If a task touches focus, communication, UX/SEO, or Python delivery quality, explicitly load the matching skill and follow it.
