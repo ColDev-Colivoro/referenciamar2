@@ -15,16 +15,19 @@ export class ApiError extends Error {
 
 export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
   const token = getToken()
-  const authHeader = token ? { Authorization: `Token ${token}` } : {}
+
+  const headers = new Headers({
+    "Content-Type": "application/json",
+  })
+  if (token) headers.set("Authorization", `Token ${token}`)
+  if (init?.headers) {
+    const initHeaders = new Headers(init.headers as HeadersInit)
+    initHeaders.forEach((value, key) => headers.set(key, value))
+  }
 
   const response = await fetch(buildApiUrl(path), {
     ...init,
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...authHeader,
-      ...(init?.headers ?? {}),
-    },
+    headers,
   })
 
   const isJson = response.headers.get("content-type")?.includes("application/json")
